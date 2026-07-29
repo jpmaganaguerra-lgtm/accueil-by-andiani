@@ -1,0 +1,20 @@
+{
+  "name": "accueil-by-andiani",
+  "version": "1.0.0",
+  "description": "Portal institucional B2B de Accueil by Andiani",
+  "private": true,
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "css:build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "content:build": "node scripts/build-insights.mjs",
+    "build": "npm run css:build && npm run content:build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.7",
+    "tailwindcss": "^3.4.19"
+  }
+}

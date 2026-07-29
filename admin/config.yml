@@ -1,0 +1,34 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Se activa desde el dashboard de Netlify: Site configuration → Identity
+# (activar) y → Git Gateway (activar). Sin esto, /admin no deja iniciar sesión.
+
+media_folder: "assets/insights/uploads"
+public_folder: "/assets/insights/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "insights"
+    label: "Insights"
+    label_singular: "Artículo"
+    folder: "content/insights"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "title"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Slug (URL, sin espacios ni acentos)", name: "slug", widget: "string", hint: "Ej. como-convertir-edificio-residencial-en-hotel-rentable" }
+      - { label: "Imagen de portada", name: "cover", widget: "image" }
+      - { label: "Extracto (aparece en la tarjeta)", name: "excerpt", widget: "text" }
+      - label: "Categoría"
+        name: "tag"
+        widget: "select"
+        options: ["Conversión de activos", "Tecnología", "Mercado", "Revenue Management", "Operación", "Institucional"]
+      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Publicado", name: "published", widget: "boolean", default: false, hint: "Solo los artículos marcados como Publicado aparecen en el sitio" }
+      - { label: "Contenido", name: "body", widget: "markdown" }

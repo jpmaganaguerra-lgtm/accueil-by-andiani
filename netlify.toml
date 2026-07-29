@@ -1,0 +1,19 @@
+[build]
+  command = "npm run build"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Nunca cachear el índice de artículos ni el HTML de cada artículo agresivamente,
+# para que un artículo recién publicado aparezca sin que el navegador sirva
+# una copia vieja desde caché.
+[[headers]]
+  for = "/content/insights.json"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/insights/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

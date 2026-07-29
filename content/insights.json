@@ -1,0 +1,29 @@
+[
+  {
+    "title": "El futuro del hospedaje premium en mercados emergentes",
+    "slug": "futuro-del-hospedaje-premium-en-mercados-emergentes",
+    "cover": "/assets/photos/insights/insights-futuro-hospedaje-premium-boutique.jpg",
+    "excerpt": "Por qué los mercados emergentes de hospitalidad boutique están dejando atrás el modelo de administración tradicional.",
+    "tag": "Mercado",
+    "date": "2026-07-24T00:00:00.000Z",
+    "published": true
+  },
+  {
+    "title": "IA aplicada a revenue management en hospitalidad boutique",
+    "slug": "ia-aplicada-a-revenue-management-en-hospitalidad-boutique",
+    "cover": "/assets/photos/insights/insights-ia-revenue-management-hospitalidad.jpg",
+    "excerpt": "Dónde la inteligencia artificial mejora de verdad las decisiones de pricing en hospitalidad boutique, y dónde sigue haciendo falta criterio humano.",
+    "tag": "Tecnología",
+    "date": "2026-07-18T00:00:00.000Z",
+    "published": true
+  },
+  {
+    "title": "Cómo convertir un edificio residencial en un hotel rentable",
+    "slug": "como-convertir-edificio-residencial-en-hotel-rentable",
+    "cover": "/assets/photos/insights/insights-conversion-edificio-residencial-hotel.jpg",
+    "excerpt": "Qué hace viable —o no— convertir un edificio residencial en un aparthotel boutique, y qué decisiones tempranas determinan el resultado.",
+    "tag": "Conversión de activos",
+    "date": "2026-07-10T00:00:00.000Z",
+    "published": true
+  }
+]
