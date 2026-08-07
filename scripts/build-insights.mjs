@@ -69,6 +69,30 @@ function formatDateEs(iso) {
 
 function renderArticlePage({ headerHtml, footerHtml, whatsappHtml }, article) {
   const bodyHtml = marked.parse(article.bodyMarkdown);
+
+  const metaLine = `${article.tag} &middot; ${formatDateEs(article.date)}`;
+
+  // Con portada: hero a todo lo ancho, imagen de fondo + degradado, título
+  // superpuesto abajo (mismo lenguaje visual que el Hero de la home).
+  // Sin portada: cabecera simple, como antes.
+  const topBlock = article.cover
+    ? `
+<section class="relative h-[56vh] min-h-[420px] flex items-end overflow-hidden">
+  <div class="absolute inset-0 ph" style="background-image:url('${article.cover}')"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/5"></div>
+  <div class="relative max-w-2xl mx-auto w-full px-6 md:px-10 pb-10 md:pb-14">
+    <a href="/#insights" class="eyebrow text-bg/70 hover:text-accent transition-colors">&larr; Insights</a>
+    <p class="eyebrow text-accent mt-6 mb-3">${metaLine}</p>
+    <h1 class="font-display font-light text-3xl md:text-5xl leading-tight text-bg">${article.title}</h1>
+  </div>
+</section>`
+    : `
+<div class="pt-40 max-w-2xl mx-auto px-6 md:px-10">
+  <a href="/#insights" class="eyebrow text-dark hover:text-accent transition-colors">&larr; Insights</a>
+  <p class="eyebrow text-accent mt-8 mb-4">${metaLine}</p>
+  <h1 class="font-display font-light text-4xl md:text-5xl leading-tight">${article.title}</h1>
+</div>`;
+
   return `<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -84,12 +108,10 @@ function renderArticlePage({ headerHtml, footerHtml, whatsappHtml }, article) {
 
 ${headerHtml}
 
-<article class="pt-40 pb-28 md:pb-36">
+${topBlock}
+
+<article class="${article.cover ? 'pt-14 md:pt-16' : 'pt-10'} pb-28 md:pb-36">
   <div class="max-w-2xl mx-auto px-6 md:px-10">
-    <a href="/#insights" class="eyebrow text-dark hover:text-accent transition-colors">&larr; Insights</a>
-    <p class="eyebrow text-accent mt-8 mb-4">${article.tag} &middot; ${formatDateEs(article.date)}</p>
-    <h1 class="font-display font-light text-4xl md:text-5xl leading-tight mb-10">${article.title}</h1>
-    ${article.cover ? `<div class="ph aspect-[16/9] mb-12" style="background-image:url('${article.cover}')"></div>` : ''}
     <div class="prose-accueil">
       ${bodyHtml}
     </div>
