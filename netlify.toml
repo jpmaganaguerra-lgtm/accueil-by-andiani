@@ -9,16 +9,11 @@
   directory = "netlify/functions"
   included_files = ["netlify/functions/_reports/**"]
 
-# Ruta amigable: /reportes/montes-de-ame/ver → la Function que valida sesión
-# y sirve el reporte real (ver netlify/functions/report.js). El id viaja como
-# parte de la ruta hacia la función, no como query string — Netlify no
-# garantiza la sustitución de placeholders dentro de un query string en el
-# destino de un redirect, solo en la ruta.
-[[redirects]]
-  from = "/reportes/:id/ver"
-  to = "/.netlify/functions/report/:id"
-  status = 200
-  force = true
+# El acceso a cada reporte va directo del navegador a la Function
+# (/.netlify/functions/report/<id>), sin pasar por un redirect intermedio —
+# los redirects de Netlify no garantizan cómo le llega la ruta reescrita a
+# la función, así que se evita esa capa por completo. Ver
+# reportes/montes-de-ame/index.html y netlify/functions/report.js.
 
 # Nunca cachear el índice de artículos ni el HTML de cada artículo agresivamente,
 # para que un artículo recién publicado aparezca sin que el navegador sirva
