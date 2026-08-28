@@ -22,7 +22,17 @@ const REPORTS = {
 };
 
 exports.handler = async (event) => {
-  const id = (event.queryStringParameters && event.queryStringParameters.id) || '';
+  // el id llega como parte de la ruta (/.netlify/functions/report/montes-de-ame),
+  // vía el redirect de netlify.toml. Se deja el query string (?id=) como
+  // respaldo, por si alguna vez se llama a la función directo así.
+  let id = event.queryStringParameters && event.queryStringParameters.id;
+  if (!id) {
+    const parts = event.path.split('/').filter(Boolean);
+    const idx = parts.indexOf('report');
+    if (idx !== -1 && parts[idx + 1]) id = decodeURIComponent(parts[idx + 1]);
+  }
+  id = id || '';
+
   const report = REPORTS[id];
 
   if (!report) {
