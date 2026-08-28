@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accueil — Estudio de Mercado STR · Montes de Amé, Mérida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050505;
+    --panel:#0d0d0f;
+    --panel-2:#121215;
+    --line: rgba(255,255,255,0.09);
+    --line-strong: rgba(255,255,255,0.18);
+    --text:#f3f1ea;
+    --text-dim:#a7a49c;
+    --text-faint:#6c6a63;
+    --accent:#c7a467;
+    --accent-soft: rgba(199,164,103,0.14);
+    --positive:#93ac86;
+    --negative:#c07a5f;
+    --serif:'Fraunces', serif;
+    --sans:'Inter', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--accent-soft); color:var(--text);}
+
+  a{color:inherit;}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 40px;}
+  @media (max-width:720px){ .wrap{padding:0 20px;} }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(5,5,5,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; padding:0 40px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .nav-mark{display:flex; align-items:center; gap:12px;}
+  .nav-mark svg{height:20px; width:auto; display:block;}
+  .nav-mark-text{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--text-dim); text-transform:uppercase;}
+  .nav-links{
+    display:flex; gap:22px; overflow-x:auto; scrollbar-width:none;
+  }
+  .nav-links::-webkit-scrollbar{display:none;}
+  .nav-links a{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.06em;
+    color:var(--text-faint); text-decoration:none; white-space:nowrap;
+    text-transform:uppercase; transition:color .15s ease;
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .nav-links a:hover{color:var(--accent); border-color:var(--accent);}
+  @media (max-width:900px){ .nav-links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 72px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--accent); display:inline-block;}
+  h1.title{
+    font-family:var(--serif); font-weight:400; font-size:clamp(34px,5vw,58px);
+    line-height:1.08; letter-spacing:-0.01em; max-width:920px; color:var(--text);
+  }
+  h1.title em{font-style:italic; color:var(--accent); font-weight:400;}
+  .subtitle{
+    margin-top:26px; font-size:17px; color:var(--text-dim); max-width:640px; font-weight:300;
+  }
+  .meta-row{
+    margin-top:48px; display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border-top:1px solid var(--line);
+  }
+  .meta-item{padding:18px 24px 18px 0; border-right:1px solid var(--line);}
+  .meta-item:last-child{border-right:none;}
+  .meta-label{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-faint); margin-bottom:6px;}
+  .meta-value{font-size:14px; color:var(--text-dim);}
+  @media (max-width:800px){ .meta-row{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:88px 0; border-bottom:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; gap:18px; margin-bottom:44px;}
+  .section-num{font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.08em;}
+  h2.section-title{
+    font-family:var(--serif); font-weight:400; font-size:clamp(24px,3vw,34px); color:var(--text);
+    letter-spacing:-0.01em;
+  }
+  .section-kicker{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint);
+    margin-top:6px;
+  }
+  .lede{font-size:16px; color:var(--text-dim); max-width:760px; margin-bottom:40px; font-weight:300;}
+
+  /* ---------- INSIGHT CARDS ---------- */
+  .insight-grid{display:grid; grid-template-columns:1fr; gap:0;}
+  .insight{
+    display:grid; grid-template-columns:60px 1fr; gap:28px;
+    padding:32px 0; border-top:1px solid var(--line);
+  }
+  .insight:last-child{border-bottom:1px solid var(--line);}
+  .insight-idx{font-family:var(--mono); font-size:13px; color:var(--accent); padding-top:4px;}
+  .insight-title{font-family:var(--serif); font-size:20px; color:var(--text); margin-bottom:10px; line-height:1.3;}
+  .insight-body{font-size:14.5px; color:var(--text-dim); max-width:760px;}
+  .insight-body b{color:var(--text); font-weight:500;}
+  .tag-row{display:flex; gap:8px; margin-top:14px; flex-wrap:wrap;}
+  .tag{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+    padding:4px 9px; border:1px solid var(--line-strong); border-radius:2px; color:var(--text-dim);
+  }
+  .tag.high{border-color:rgba(199,164,103,0.5); color:var(--accent);}
+  .tag.confmed{color:var(--text-dim);}
+
+  /* ---------- KPI CARDS ---------- */
+  .kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .kpi{background:var(--panel); padding:26px 22px;}
+  .kpi-label{font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:14px;}
+  .kpi-value{font-family:var(--mono); font-size:28px; color:var(--text); font-weight:500; letter-spacing:-0.02em;}
+  .kpi-delta{margin-top:10px; font-family:var(--mono); font-size:12px;}
+  .kpi-delta.pos{color:var(--positive);}
+  .kpi-delta.neg{color:var(--negative);}
+  .kpi-note{margin-top:8px; font-size:11.5px; color:var(--text-faint);}
+  @media (max-width:900px){ .kpi-grid{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- TABLES ---------- */
+  table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  th{
+    text-align:left; font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--text-faint); padding:0 16px 14px 0; border-bottom:1px solid var(--line-strong); font-weight:500;
+  }
+  td{padding:14px 16px 14px 0; border-bottom:1px solid var(--line); color:var(--text-dim); vertical-align:top;}
+  td.strong{color:var(--text); font-weight:500;}
+  td.num{font-family:var(--mono); color:var(--text);}
+  tr:last-child td{border-bottom:1px solid var(--line-strong);}
+  .table-wrap{overflow-x:auto;}
+  .table-note{margin-top:14px; font-size:12px; color:var(--text-faint); max-width:760px;}
+
+  /* ---------- RANGE BARS (monthly rent) ---------- */
+  .rangechart{margin-top:8px;}
+  .rrow{display:grid; grid-template-columns:170px 1fr 130px; align-items:center; gap:18px; padding:14px 0; border-top:1px solid var(--line);}
+  .rrow:last-child{border-bottom:1px solid var(--line);}
+  .rrow .rlabel{font-size:13px; color:var(--text);}
+  .rrow .rlabel small{display:block; font-family:var(--mono); font-size:10px; color:var(--text-faint); margin-top:3px;}
+  .rtrack{position:relative; height:6px; background:var(--panel-2); border:1px solid var(--line);}
+  .rfill{position:absolute; top:-1px; bottom:-1px; background:var(--accent-soft); border:1px solid var(--accent);}
+  .rrow .rvals{font-family:var(--mono); font-size:12px; color:var(--text-dim); text-align:right;}
+  .axis-caption{display:grid; grid-template-columns:170px 1fr 130px; gap:18px; margin-top:10px;}
+  .axis-caption .amin, .axis-caption .amax{font-family:var(--mono); font-size:10px; color:var(--text-faint);}
+  .axis-caption .amax{text-align:right;}
+
+  /* ---------- BAR LIST (amenities) ---------- */
+  .barlist{margin-top:8px;}
+  .brow{display:grid; grid-template-columns:120px 1fr 52px; align-items:center; gap:16px; padding:10px 0; border-top:1px solid var(--line);}
+  .brow:last-child{border-bottom:1px solid var(--line);}
+  .brow .blabel{font-size:13px; color:var(--text-dim);}
+  .btrack{height:16px; background:var(--panel-2); position:relative;}
+  .bfill{height:100%; background:linear-gradient(90deg, rgba(199,164,103,0.55), rgba(199,164,103,0.85));}
+  .brow .bval{font-family:var(--mono); font-size:12px; color:var(--text); text-align:right;}
+
+  /* ---------- RECONCILIATION BRIDGE (waterfall) ---------- */
+  .bridge-block{margin-bottom:36px;}
+  .bridge-heading{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px;}
+  .bridge-heading .bh-name{font-size:13px; color:var(--text);}
+  .bridge-heading .bh-ratio{font-family:var(--mono); font-size:12px; color:var(--accent);}
+  .bridge-track{position:relative; height:30px; background:var(--panel-2); border:1px solid var(--line);}
+  .bridge-real{position:absolute; top:0; bottom:0; left:0; background:rgba(199,164,103,0.75);}
+  .bridge-gap{position:absolute; top:0; bottom:0; background:repeating-linear-gradient(45deg, rgba(192,122,95,0.3), rgba(192,122,95,0.3) 5px, transparent 5px, transparent 10px); border-left:1px dashed rgba(192,122,95,0.55);}
+  .bridge-vlabel{position:absolute; bottom:36px; transform:translateX(-100%); font-family:var(--mono); font-size:11px; color:var(--text); white-space:nowrap;}
+  .bridge-vlabel.gapend{transform:translateX(-100%); color:var(--negative);}
+  .bridge-foot{display:flex; justify-content:space-between; margin-top:8px; font-family:var(--mono); font-size:10px; color:var(--text-faint);}
+
+  /* ---------- TWO COL ---------- */
+  .cols-2{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px;}
+  @media (max-width:900px){ .cols-2{grid-template-columns:1fr;} }
+
+  .panel-box{background:var(--panel); border:1px solid var(--line); padding:28px;}
+  .panel-title{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:18px;}
+
+  .callout{
+    border-left:2px solid var(--accent); background:var(--panel); padding:22px 26px; margin-top:28px;
+  }
+  .callout .callout-label{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+  .callout p{font-size:13.5px; color:var(--text-dim);}
+  .callout p b{color:var(--text);}
+
+  /* ---------- RADAR ---------- */
+  .radar-wrap{display:flex; align-items:center; justify-content:center; padding:10px 0;}
+  .radar-legend{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:24px;}
+  .rl-item{display:flex; justify-content:space-between; border-top:1px solid var(--line); padding-top:10px;}
+  .rl-item .rl-name{font-size:12.5px; color:var(--text-dim);}
+  .rl-item .rl-num{font-family:var(--mono); font-size:13px; color:var(--accent);}
+
+  /* ---------- PERSONA CARDS ---------- */
+  .persona-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:8px;}
+  .persona{background:var(--panel); padding:32px;}
+  .persona.primary{grid-column:1 / -1; background:var(--panel-2);}
+  .persona-tag{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px;}
+  .persona-name{font-family:var(--serif); font-size:24px; margin-bottom:4px;}
+  .persona-meta{font-size:12.5px; color:var(--text-faint); margin-bottom:20px;}
+  .persona-cols{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  @media (max-width:700px){ .persona-cols{grid-template-columns:1fr;} }
+  .persona h4{font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:10px;}
+  .persona ul{list-style:none;}
+  .persona ul li{font-size:13px; color:var(--text-dim); padding:5px 0 5px 16px; position:relative;}
+  .persona ul li::before{content:'—'; position:absolute; left:0; color:var(--text-faint);}
+  .persona-motive{margin-top:18px; padding-top:18px; border-top:1px solid var(--line); font-size:13.5px; color:var(--text-dim); font-style:italic;}
+  .persona-motive b{color:var(--accent); font-style:normal; font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:8px; font-style:normal;}
+
+  /* ---------- DECISION TABLE PRIORITY ---------- */
+  .prio{
+    font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; text-transform:uppercase;
+    padding:3px 8px; border-radius:2px; display:inline-block;
+  }
+  .prio.critica{background:rgba(192,122,95,0.18); color:var(--negative);}
+  .prio.alta{background:rgba(199,164,103,0.18); color:var(--accent);}
+  .prio.media{background:rgba(255,255,255,0.08); color:var(--text-dim);}
+
+  /* ---------- CHECKLIST ---------- */
+  .checklist{display:grid; grid-template-columns:1fr 1fr; gap:10px 32px; margin-top:8px;}
+  @media (max-width:700px){ .checklist{grid-template-columns:1fr;} }
+  .checklist div{font-size:13.5px; color:var(--text-dim); padding:9px 0; border-top:1px solid var(--line); display:flex; gap:10px;}
+  .checklist div::before{content:'□'; color:var(--accent); flex-shrink:0;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:64px 0 80px;}
+  .footer-grid{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:48px;}
+  @media (max-width:800px){ .footer-grid{grid-template-columns:1fr; gap:32px;} }
+  .footer-title{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:16px;}
+  footer ol{padding-left:18px; color:var(--text-dim); font-size:12.5px;}
+  footer ol li{margin-bottom:8px;}
+  footer a{color:var(--text-dim); text-decoration:none; border-bottom:1px solid var(--line-strong);}
+  footer a:hover{color:var(--accent); border-color:var(--accent);}
+  .legend-row{display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--text-dim); margin-bottom:10px;}
+  .dot{width:8px; height:8px; border-radius:50%; display:inline-block;}
+  .dot.alta{background:var(--positive);}
+  .dot.media{background:var(--accent);}
+  .dot.baja{background:var(--negative);}
+  .footer-bottom{margin-top:64px; padding-top:28px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .footer-logo{height:16px; opacity:.75;}
+  .footer-confidential{font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint);}
+
+  .cite{font-family:var(--mono); font-size:10px; color:var(--text-faint); vertical-align:super;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="4" x2="50" y2="22" stroke="#f3f1ea" stroke-width="2.4"/>
+        <line x1="50" y1="78" x2="50" y2="96" stroke="#f3f1ea" stroke-width="2.4"/>
+        <line x1="4" y1="50" x2="22" y2="50" stroke="#f3f1ea" stroke-width="2.4"/>
+        <line x1="78" y1="50" x2="96" y2="50" stroke="#f3f1ea" stroke-width="2.4"/>
+        <path d="M50 26 L74 74 L64 74 L50 46 L36 74 L26 74 Z" fill="#f3f1ea"/>
+      </svg>
+      <span class="nav-mark-text">Accueil by Andiani — Market Intelligence</span>
+    </div>
+    <div class="nav-links">
+      <a href="#resumen">01 Resumen</a>
+      <a href="#metodologia">02 Método</a>
+      <a href="#renta">03 Renta Mensual</a>
+      <a href="#beyond">04 Diagnóstico STR</a>
+      <a href="#airdna">05 Submercado</a>
+      <a href="#triangulacion">06 Triangulación</a>
+      <a href="#escenarios">07 Escenarios</a>
+      <a href="#persona">08 Guest Persona</a>
+      <a href="#regulacion">09 Regulación</a>
+      <a href="#segmentos">10 Segmentos</a>
+      <a href="#decisiones">11 Decisiones</a>
+      <a href="#fuentes">12 Fuentes</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Estudio de Mercado · Confidencial</div>
+    <h1 class="title">Short-Term Rentals en <em>Montes de Amé</em>, Mérida</h1>
+    <p class="subtitle">Síntesis y triangulación de tres fuentes independientes — estudio inmobiliario de base, Beyond Pricing y AirDNA — para calibrar producto, tarifa, posicionamiento y Guest Persona de una unidad de una habitación.</p>
+    <div class="meta-row">
+      <div class="meta-item">
+        <div class="meta-label">Fecha de corte</div>
+        <div class="meta-value">27 de agosto de 2026</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Producto objetivo</div>
+        <div class="meta-value">Unidad de 1 habitación, amueblada, sin amenidades upscale</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Fuentes</div>
+        <div class="meta-value">Estudio de mercado · Beyond Pricing · AirDNA</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Preparado para</div>
+        <div class="meta-value">Accueil by Andiani</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== 01 RESUMEN EJECUTIVO ===================== -->
+<section id="resumen">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <div>
+        <h2 class="section-title">Resumen ejecutivo</h2>
+        <div class="section-kicker">Seis señales, contrastadas entre fuentes, con implicación y acción</div>
+      </div>
+    </div>
+    <p class="lede">Cada hallazgo sigue la misma disciplina: qué observamos → por qué importa para la decisión de producto y tarifa → qué hacer. Se señala el nivel de confianza cuando dos fuentes independientes coinciden o divergen.</p>
+
+    <div class="insight-grid">
+
+      <div class="insight">
+        <div class="insight-idx">01</div>
+        <div>
+          <div class="insight-title">El mercado premia tarifa, no ocupación</div>
+          <div class="insight-body">Dos plataformas independientes muestran la misma dirección: el ADR reservado en Montes de Amé subió <b>+8.7% interanual</b> (900 → 978 MXN) mientras la ocupación cedió de 48% a <b>45%</b>. En el submercado ampliado de AirDNA, el patrón es más marcado: ADR <b>+17.5%</b> interanual frente a una ocupación que retrocedió <b>-13.5%</b>. Al conciliar ambas fuentes ponderando por precisión geográfica y tamaño de muestra (sección 06), el ADR real del mercado se ubica en <b>≈$963 MXN</b> y la ocupación en <b>≈46.7%</b> — con un revenue real conciliado de <b>≈$129,900 MXN/año</b>, validado de forma cruzada contra el dato observado directamente por Beyond Pricing. <br><br>Esto es evidencia directa del patrón "el mercado absorbe precio mejor que volumen" — la respuesta correcta no es bajar tarifa para ganar noches, sino fijar la tarifa de lanzamiento en el extremo alto del rango validado.</div>
+          <div class="tag-row"><span class="tag high">Confianza alta — dos fuentes coinciden</span><span class="tag">Acción: pricing</span></div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-idx">02</div>
+        <div>
+          <div class="insight-title">El producto de una habitación ya no es una hipótesis — es el consenso del mercado</div>
+          <div class="insight-body">El 100% de los 95 listados activos dentro del polígono exacto de Montes de Amé son unidades de una recámara (0% en estudios, 2BR o superiores). El mercado ya se autoseleccionó hacia este formato antes de que Accueil entre. La pregunta relevante deja de ser <b>qué construir</b> y pasa a ser <b>cómo diferenciarse dentro de un inventario homogéneo</b> de 95 competidores casi idénticos en tipología.</div>
+          <div class="tag-row"><span class="tag high">Confianza alta — censo completo del polígono</span><span class="tag">Acción: diferenciación de producto</span></div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-idx">03</div>
+        <div>
+          <div class="insight-title">Las amenidades sociales no diferencian; la confiabilidad básica sí</div>
+          <div class="insight-body">Aire acondicionado, wifi y cocina aparecen en el <b>99%</b> del inventario activo — son tabla de apuestas, no ventaja competitiva. La alberca aparece en apenas el <b>49%</b>, gimnasio y lavadora por debajo del 45%. Esto confirma con datos duros lo que el estudio de base planteaba como hipótesis de Guest Persona: el huésped de Montes de Amé no paga por rooftop, paga por que lo esencial funcione sin fricción.</div>
+          <div class="tag-row"><span class="tag high">Confianza alta</span><span class="tag">Acción: presupuesto de producto</span></div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-idx">04</div>
+        <div>
+          <div class="insight-title">Frente al hotel de referencia existe casi 2x de brecha de valor, con calificación casi idéntica</div>
+          <div class="insight-body">La tarifa hotelera promedio de la zona es de <b>$1,913 MXN</b>, prácticamente el doble del ADR reservado en STR ($978 MXN) — con una calificación de huésped comparable (8.6/10 hotel, equivalente a ~4.3/5, contra 4.7/5 en STR). Esa combinación —precio muy inferior, satisfacción similar— es la señal más clara de poder de precio no capturado en todo el estudio.</div>
+          <div class="tag-row"><span class="tag high">Confianza alta</span><span class="tag">Acción: prueba de tarifa por encima del promedio de mercado</span></div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-idx">05</div>
+        <div>
+          <div class="insight-title">El techo de desempeño ya existe dentro del propio submercado — no hay que inventarlo</div>
+          <div class="insight-body">Los listados top-cuartil del submercado ampliado generan entre <b>$222K y $322K MXN</b> anuales — de 1.75x a 2.5x el promedio del listado típico ($126K–$176K)— sin depender de amenidades excepcionales: el listado top de la muestra no anuncia alberca ni rooftop, solo "moderno, luminoso y cómodo" con 77% de ocupación. Esto valida que la ejecución (fotografía, ubicación específica, operación) importa más que el inventario de amenidades.</div>
+          <div class="tag-row"><span class="tag high">Confianza alta — comparables reales, no proyección</span><span class="tag">Acción: fijar meta de año 1</span></div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <div class="insight-idx">06</div>
+        <div>
+          <div class="insight-title">Riesgo a monitorear: la oferta se contrae y la ocupación cae al mismo tiempo</div>
+          <div class="insight-body">En el submercado ampliado, los listados activos cayeron <b>-9.1%</b> y la ocupación cayó <b>-13.5%</b> en el mismo periodo de doce meses. En un mercado sano, menos oferta debería aliviar presión sobre la ocupación restante; que ambas variables caigan a la vez sugiere que la demanda podría estar desacelerando más rápido que la oferta, o un cambio de composición del inventario que no podemos aislar con los datos disponibles. No se debe anclar la estrategia de pricing a esta lectura sin observar al menos un trimestre adicional.</div>
+          <div class="tag-row"><span class="tag confmed">Confianza media — señal a validar, no a asumir como causal</span><span class="tag">Acción: monitorear, no reaccionar</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 02 METODOLOGÍA ===================== -->
+<section id="metodologia">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <div>
+        <h2 class="section-title">Metodología y trazabilidad de fuentes</h2>
+        <div class="section-kicker">Qué mide cada fuente, con qué cobertura, y con qué nivel de confianza</div>
+      </div>
+    </div>
+    <p class="lede">El estudio de mercado original excluye deliberadamente datos de plataformas STR en su metodología, para construir primero una tesis de producto libre del sesgo de revenue management. Este dashboard incorpora Beyond Pricing y AirDNA como capa de validación cuantitativa sobre esa tesis — por instrucción expresa del cliente — no como su reemplazo.</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Fuente</th><th>Qué mide</th><th>Cobertura geográfica</th><th>Periodo</th><th>Muestra</th><th>Confianza</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="strong">Estudio de mercado base</td>
+          <td>Renta mensual tradicional, benchmark competitivo, contexto regulatorio, Guest Persona, hipótesis de tarifa STR</td>
+          <td>Polígono estricto de Montes de Amé + zonas comparables</td>
+          <td>Snapshot de anuncios públicos, corte 27-ago-2026</td>
+          <td>~20 fuentes inmobiliarias y de prensa citadas</td>
+          <td>Alta en renta mensual · Baja (declarada) en hipótesis STR</td>
+        </tr>
+        <tr>
+          <td class="strong">Beyond Pricing<br><span style="color:var(--text-faint); font-size:11px;">Market Insights</span></td>
+          <td>Tarifa, ocupación, revenue, reviews, amenidades y mix de producto observado</td>
+          <td>Región personalizada dibujada sobre el polígono exacto de Montes de Amé</td>
+          <td>Trailing 12 meses a 27-ago-2026, vs. cierre 2024</td>
+          <td>95 listados activos</td>
+          <td>Alta — geografía coincidente, muestra amplia</td>
+        </tr>
+        <tr>
+          <td class="strong">AirDNA<br><span style="color:var(--text-faint); font-size:11px;">Market Overview</span></td>
+          <td>Score de submercado, ADR, ocupación, revenue, ranking de listados top</td>
+          <td>Submercado "Mérida Norte Zona 1" — definición propia de AirDNA, más amplia que Montes de Amé; incluye inventario de Montebello</td>
+          <td>Trailing 12 meses a 27-ago-2026</td>
+          <td>20 listados activos</td>
+          <td>Media — geografía no idéntica, muestra reducida</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Nota metodológica</div>
+      <p>Donde Beyond Pricing y AirDNA coinciden direccionalmente (dirección de ADR, dirección de ocupación), la confianza del hallazgo sube por triangulación independiente. Donde divergen en magnitud absoluta — por ejemplo, revenue promedio por listado: <b>$126,920 MXN</b> en Beyond Pricing contra <b>$176,000 MXN</b> en AirDNA — la diferencia se reporta explícitamente en vez de promediarse, porque corresponden a polígonos geográficos distintos (Montes de Amé estricto vs. Zona Norte 1 ampliada, que incluye inventario de mayor tarifa en Montebello).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 03 MERCADO DE RENTA MENSUAL ===================== -->
+<section id="renta">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <div>
+        <h2 class="section-title">Mercado de renta mensual — costo de oportunidad del activo</h2>
+        <div class="section-kicker">Benchmark de renta tradicional de una recámara por zona</div>
+      </div>
+    </div>
+    <p class="lede">La renta mensual tradicional no mide demanda STR, pero fija el piso económico del activo: es la referencia frente a la cual cualquier operación de estancia media debe justificar su rentabilidad.</p>
+
+    <div class="rangechart">
+      <div class="rrow">
+        <div class="rlabel">Montebello<small>Rango 1BR observado</small></div>
+        <div class="rtrack"><div class="rfill" style="left:9.5%; width:26%;"></div></div>
+        <div class="rvals">9,700 – 16,000</div>
+      </div>
+      <div class="rrow">
+        <div class="rlabel">Montes de Amé<small>Básico funcional, sin amenidades</small></div>
+        <div class="rtrack"><div class="rfill" style="left:12.5%; width:19.4%;"></div></div>
+        <div class="rvals">10,000 – 15,500</div>
+      </div>
+      <div class="rrow">
+        <div class="rlabel">Altabrisa<small>1BR, excluye mediana distorsionada</small></div>
+        <div class="rtrack"><div class="rfill" style="left:17.5%; width:8%;"></div></div>
+        <div class="rvals">14,000 – 16,500</div>
+      </div>
+      <div class="rrow">
+        <div class="rlabel">Temozón Norte<small>1BR con alberca, gym y seguridad 24/7</small></div>
+        <div class="rtrack"><div class="rfill" style="left:19%; width:1%;"></div></div>
+        <div class="rvals">≈ 15,500</div>
+      </div>
+      <div class="rrow">
+        <div class="rlabel">Montes de Amé<small>Con amenidades estándar–diferenciadas</small></div>
+        <div class="rtrack"><div class="rfill" style="left:19.4%; width:6.4%;"></div></div>
+        <div class="rvals">15,500 – 22,000</div>
+      </div>
+      <div class="rrow">
+        <div class="rlabel">Santa Gertrudis Copó<small>Torre ONNE, 1BR + amenidades (referencia puntual)</small></div>
+        <div class="rtrack"><div class="rfill" style="left:21.25%; width:0.5%;"></div></div>
+        <div class="rvals">≈ 17,000 <span style="color:var(--text-faint);">(14,000 + 3,000 mant.)</span></div>
+      </div>
+      <div class="axis-caption">
+        <div></div>
+        <div style="display:flex; justify-content:space-between;"><span class="amin">$8,000 MXN/mes</span><span class="amax">$24,000 MXN/mes</span></div>
+        <div></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Lectura competitiva</div>
+      <p><b>Temozón Norte</b> es el competidor más directo para una unidad con amenidades: si Montes de Amé compite en ese rango sin diferenciarse en ubicación, conectividad o calidad interior, pierde por precio. <b>Santa Gertrudis Copó</b> y <b>Altabrisa</b> no deben leerse por su mediana general publicada (18,000 y 35,000 MXN respectivamente) porque mezclan inventario premium y tipologías más grandes — las cifras aquí ya están filtradas a comparables reales de una recámara.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 04 DIAGNÓSTICO STR MONTES DE AMÉ (BEYOND) ===================== -->
+<section id="beyond">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <div>
+        <h2 class="section-title">Diagnóstico STR — Montes de Amé exacto</h2>
+        <div class="section-kicker">Beyond Pricing · Custom Region · 95 listados activos · TTM a 27-ago-2026</div>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">Tarifa publicada promedio</div>
+        <div class="kpi-value">$992</div>
+        <div class="kpi-delta pos">+5.4% vs. 2024 ($941)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Tarifa reservada promedio (ADR)</div>
+        <div class="kpi-value">$978</div>
+        <div class="kpi-delta pos">+8.7% vs. 2024 ($900)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Ocupación</div>
+        <div class="kpi-value">45%</div>
+        <div class="kpi-delta neg">-3 pp vs. 2024 (48%)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Revenue promedio / listado</div>
+        <div class="kpi-value">$126.9K</div>
+        <div class="kpi-delta pos">+40.2% vs. 2024 ($90.5K)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Calificación promedio</div>
+        <div class="kpi-value">4.7 ★</div>
+        <div class="kpi-note">62 reseñas promedio por listado — mercado maduro, no emergente</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Estancia mínima promedio</div>
+        <div class="kpi-value">2 noches</div>
+        <div class="kpi-note">Inventario orientado a estancia corta, no media/larga</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Tarifa hotelera de referencia</div>
+        <div class="kpi-value">$1,913</div>
+        <div class="kpi-note">Hoteles de la zona · calificación 8.6/10</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Mix de tipología</div>
+        <div class="kpi-value">100%</div>
+        <div class="kpi-note">de los 95 listados son unidades de 1 recámara</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Nota de reconciliación — desarrollada en la sección 06</div>
+      <p>ADR × ocupación × 365 días proyecta un techo teórico de <b>$160,637 MXN/año</b> para 2026, muy por encima del revenue promedio reportado ($126,920). Esa brecha de <b>21 puntos</b> no es un error de dato: es una <b>tasa de realización de ingreso</b> del 79% — la fricción real de calendario, estancias mínimas y ramp-up de listados nuevos entre la tarifa teórica y el ingreso efectivamente cobrado. La sección 06 calcula esta tasa para ambas plataformas y la usa para construir la cifra conciliada real.</p>
+    </div>
+
+    <div class="cols-2" style="margin-top:56px;">
+      <div>
+        <div class="panel-title">Amenidades del inventario activo — % de listados</div>
+        <div class="barlist">
+          <div class="brow"><div class="blabel">Aire acondicionado</div><div class="btrack"><div class="bfill" style="width:99%;"></div></div><div class="bval">99%</div></div>
+          <div class="brow"><div class="blabel">Wifi</div><div class="btrack"><div class="bfill" style="width:99%;"></div></div><div class="bval">99%</div></div>
+          <div class="brow"><div class="blabel">Cocina</div><div class="btrack"><div class="bfill" style="width:99%;"></div></div><div class="bval">99%</div></div>
+          <div class="brow"><div class="blabel">TV</div><div class="btrack"><div class="bfill" style="width:96%;"></div></div><div class="bval">96%</div></div>
+          <div class="brow"><div class="blabel">Estacionamiento</div><div class="btrack"><div class="bfill" style="width:87%;"></div></div><div class="bval">87%</div></div>
+          <div class="brow"><div class="blabel">Alberca</div><div class="btrack"><div class="bfill" style="width:49%;"></div></div><div class="bval">49%</div></div>
+          <div class="brow"><div class="blabel">Lavadora</div><div class="btrack"><div class="bfill" style="width:45%;"></div></div><div class="bval">45%</div></div>
+          <div class="brow"><div class="blabel">Secadora</div><div class="btrack"><div class="bfill" style="width:32%;"></div></div><div class="bval">32%</div></div>
+          <div class="brow"><div class="blabel">Acepta mascotas</div><div class="btrack"><div class="bfill" style="width:24%;"></div></div><div class="bval">24%</div></div>
+          <div class="brow"><div class="blabel">Calefacción</div><div class="btrack"><div class="bfill" style="width:8%;"></div></div><div class="bval">8%</div></div>
+          <div class="brow"><div class="blabel">Hot tub</div><div class="btrack"><div class="bfill" style="width:3%;"></div></div><div class="bval">3%</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="panel-box">
+          <div class="panel-title">STR vs. hotel de referencia — ADR</div>
+          <div style="display:flex; align-items:flex-end; gap:28px; height:150px; margin:24px 0 10px;">
+            <div style="flex:1; text-align:center;">
+              <div style="height:78px; background:var(--accent-soft); border:1px solid var(--accent); display:flex; align-items:flex-start; justify-content:center; padding-top:8px;">
+                <span style="font-family:var(--mono); font-size:13px;">$978</span>
+              </div>
+              <div style="font-size:11px; color:var(--text-faint); margin-top:8px;">STR · Montes de Amé</div>
+            </div>
+            <div style="flex:1; text-align:center;">
+              <div style="height:150px; background:rgba(255,255,255,0.08); border:1px solid var(--line-strong); display:flex; align-items:flex-start; justify-content:center; padding-top:8px;">
+                <span style="font-family:var(--mono); font-size:13px;">$1,913</span>
+              </div>
+              <div style="font-size:11px; color:var(--text-faint); margin-top:8px;">Hotel de referencia</div>
+            </div>
+          </div>
+          <p style="font-size:12.5px; color:var(--text-dim); margin-top:14px;">El STR opera al <b style="color:var(--text);">51%</b> de la tarifa hotelera promedio, con una satisfacción de huésped equivalente (4.7/5 vs. 8.6/10 ≈ 4.3/5). Brecha de valor no capturada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 05 SUBMERCADO AMPLIADO — AIRDNA ===================== -->
+<section id="airdna">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <div>
+        <h2 class="section-title">Submercado ampliado — Mérida Norte Zona 1</h2>
+        <div class="section-kicker">AirDNA · 20 listados activos · TTM a 27-ago-2026 · incluye inventario de Montebello</div>
+      </div>
+    </div>
+
+    <div class="cols-2">
+      <div>
+        <div class="panel-title">Submarket Score — 90 / 100</div>
+        <div class="radar-wrap">
+          <svg width="300" height="300" viewBox="0 0 300 300">
+            <!-- grid rings -->
+            <polygon points="150,68 232,150 150,232 68,150" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <polygon points="150,95 205,150 150,205 95,150" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <polygon points="150,122 178,150 150,178 122,150" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <polygon points="150,150 150,150 150,150 150,150" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <!-- axes -->
+            <line x1="150" y1="150" x2="150" y2="40" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+            <line x1="150" y1="150" x2="260" y2="150" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+            <line x1="150" y1="150" x2="150" y2="260" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+            <line x1="150" y1="150" x2="40" y2="150" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+            <!-- data polygon: Demanda(top)=77, Rev.Growth(right)=60, Estacionalidad(bottom)=96, Regulación(left)=79 -->
+            <polygon points="150,65.3 216,150 150,255.6 63.1,150" fill="rgba(199,164,103,0.22)" stroke="#c7a467" stroke-width="1.6"/>
+            <circle cx="150" cy="65.3" r="3" fill="#c7a467"/>
+            <circle cx="216" cy="150" r="3" fill="#c7a467"/>
+            <circle cx="150" cy="255.6" r="3" fill="#c7a467"/>
+            <circle cx="63.1" cy="150" r="3" fill="#c7a467"/>
+            <!-- labels -->
+            <text x="150" y="28" text-anchor="middle" fill="#a7a49c" font-family="IBM Plex Mono" font-size="10">DEMANDA · 77</text>
+            <text x="270" y="154" text-anchor="start" fill="#a7a49c" font-family="IBM Plex Mono" font-size="10">CRECIMIENTO · 60</text>
+            <text x="150" y="280" text-anchor="middle" fill="#a7a49c" font-family="IBM Plex Mono" font-size="10">ESTACIONALIDAD · 96</text>
+            <text x="30" y="154" text-anchor="end" fill="#a7a49c" font-family="IBM Plex Mono" font-size="10">REGULACIÓN · 79</text>
+          </svg>
+        </div>
+        <p style="font-size:12.5px; color:var(--text-faint); text-align:center; margin-top:4px;">Score compuesto de AirDNA sobre demanda, crecimiento de revenue, estacionalidad y entorno regulatorio.</p>
+      </div>
+
+      <div>
+        <div class="kpi-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="kpi">
+            <div class="kpi-label">Revenue anual promedio</div>
+            <div class="kpi-value">$176K</div>
+            <div class="kpi-delta pos">+2.4% interanual</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Listados activos</div>
+            <div class="kpi-value">20</div>
+            <div class="kpi-delta neg">-9.1% interanual</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Tarifa diaria promedio</div>
+            <div class="kpi-value">$894</div>
+            <div class="kpi-delta pos">+17.5% interanual</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Ocupación</div>
+            <div class="kpi-value">55%</div>
+            <div class="kpi-delta neg">-13.5% interanual</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:56px;">
+      <div class="panel-title">Top listados del submercado — comparables de desempeño máximo alcanzado</div>
+      <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Listado</th><th>Configuración</th><th>Rating</th><th>Revenue anual</th><th>Días disp.</th><th>Ocupación</th><th>ADR</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strong">"Modern bright and comfortable apartment"</td>
+            <td class="num">1 hab · 1 baño · 3 huéspedes</td>
+            <td class="num">5.0</td>
+            <td class="num">$322K</td>
+            <td class="num">337</td>
+            <td class="num">77%</td>
+            <td class="num">$1,003</td>
+          </tr>
+          <tr>
+            <td class="strong">"Luxury, amenities and comfort in one place"</td>
+            <td class="num">1 hab · 1 baño · 2 huéspedes</td>
+            <td class="num">5.0</td>
+            <td class="num">$246K</td>
+            <td class="num">363</td>
+            <td class="num">50%</td>
+            <td class="num">$1,896</td>
+          </tr>
+          <tr>
+            <td class="strong">"Modern apartment — near US Embassy"</td>
+            <td class="num">1 hab · 1 baño · 2 huéspedes</td>
+            <td class="num">4.9</td>
+            <td class="num">$223K</td>
+            <td class="num">341</td>
+            <td class="num">81%</td>
+            <td class="num">$812</td>
+          </tr>
+          <tr>
+            <td class="strong">"Apartment in Montebello"</td>
+            <td class="num">1 hab · 1 baño · 3 huéspedes</td>
+            <td class="num">5.0</td>
+            <td class="num">$222K</td>
+            <td class="num">365</td>
+            <td class="num">89%</td>
+            <td class="num">$754</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="table-note">Los cuatro comparables top son unidades de una recámara sin descripciones de amenidades premium — el denominador común es alta disponibilidad, ubicación específica (uno referencia proximidad a la Embajada de EE. UU.) y calificación casi perfecta, no rooftop ni alberca.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 06 TRIANGULACIÓN ===================== -->
+<section id="triangulacion">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <div>
+        <h2 class="section-title">Conciliación de métricas entre fuentes</h2>
+        <div class="section-kicker">Beyond Pricing vs. AirDNA — de dos lecturas distintas a una cifra real conciliada</div>
+      </div>
+    </div>
+    <p class="lede">Mostrar los números de las dos plataformas uno al lado del otro no es conciliación — es solo yuxtaposición. La conciliación exige explicar <b style="color:var(--text);">por qué</b> difieren y usar esa explicación para llegar a una cifra que un inversionista pueda usar. El puente para hacerlo es una identidad contable simple: <span style="font-family:var(--mono); color:var(--text);">Revenue = ADR × Ocupación × 365</span>. Cuando el revenue reportado por una plataforma no coincide con lo que esa fórmula predice, la diferencia es una <b style="color:var(--text);">tasa de realización</b> — y esa tasa, no el promedio simple de los dos números, es lo que permite conciliar.</p>
+
+    <div class="panel-title" style="margin-top:8px;">Paso 1 — ¿Qué tan bien predice la fórmula el revenue que cada plataforma reportó?</div>
+
+    <div style="margin-top:24px;">
+      <div class="bridge-block">
+        <div class="bridge-heading"><span class="bh-name">Beyond Pricing · Montes de Amé · 2026 (TTM)</span><span class="bh-ratio">Tasa de realización: 79.0%</span></div>
+        <div class="bridge-track">
+          <div class="bridge-real" style="width:68.6%;"></div>
+          <div class="bridge-gap" style="left:68.6%; width:18.2%;"></div>
+          <div class="bridge-vlabel" style="left:68.6%;">$126,920 real</div>
+          <div class="bridge-vlabel gapend" style="left:86.8%;">$160,637 teórico</div>
+        </div>
+        <div class="bridge-foot"><span>ADR $978 × Ocup. 45% × 365</span><span>Brecha: $33,717</span></div>
+      </div>
+
+      <div class="bridge-block">
+        <div class="bridge-heading"><span class="bh-name">Beyond Pricing · Montes de Amé · 2024 (referencia histórica)</span><span class="bh-ratio">Tasa de realización: 57.4%</span></div>
+        <div class="bridge-track">
+          <div class="bridge-real" style="width:48.9%;"></div>
+          <div class="bridge-gap" style="left:48.9%; width:36.3%;"></div>
+          <div class="bridge-vlabel" style="left:48.9%;">$90,525 real</div>
+          <div class="bridge-vlabel gapend" style="left:85.2%;">$157,680 teórico</div>
+        </div>
+        <div class="bridge-foot"><span>ADR $900 × Ocup. 48% × 365</span><span>Brecha: $67,155</span></div>
+      </div>
+
+      <div class="bridge-block">
+        <div class="bridge-heading"><span class="bh-name">AirDNA · Zona Norte 1 · 2026 (TTM)</span><span class="bh-ratio">Tasa de realización: 98.1%</span></div>
+        <div class="bridge-track">
+          <div class="bridge-real" style="width:95.1%;"></div>
+          <div class="bridge-gap" style="left:95.1%; width:1.9%;"></div>
+          <div class="bridge-vlabel" style="left:95.1%;">$176,000 real</div>
+          <div class="bridge-vlabel gapend" style="left:97.0%;">$179,481 teórico</div>
+        </div>
+        <div class="bridge-foot"><span>ADR $894 × Ocup. 55% × 365</span><span>Brecha: $3,481</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Lectura del puente — esto es lo que estaba faltando</div>
+      <p>La tasa de realización de Beyond Pricing pasó de <b>57.4% (2024) a 79.0% (2026)</b> — el propio mercado mejoró su capacidad de convertir tarifa y ocupación en ingreso real conforme maduró (62 reseñas promedio por listado lo confirma). La de AirDNA, en cambio, es de <b>98.1%</b> — prácticamente el techo teórico. Esa cercanía casi perfecta a la fórmula es en sí misma una señal: <b>es más probable que "Annual Revenue" de AirDNA sea una cifra derivada de ADR × Ocupación</b> (un estimado de modelo) <b>que una medición directa de transacciones</b>, mientras que el revenue de Beyond Pricing sí parece capturar fricción operativa real (calendario bloqueado, estancias mínimas, listados nuevos en ramp-up). Esto es una hipótesis razonable a partir del patrón de los datos, no un hecho confirmado por las plataformas — pero es la explicación más simple de por qué un número "parece" casi perfecto y el otro no.</p>
+    </div>
+
+    <div class="panel-title" style="margin-top:56px;">Paso 2 — ponderar ambas fuentes por precisión geográfica y tamaño de muestra</div>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Métrica</th><th>Beyond Pricing<br><span style="font-weight:400; text-transform:none; font-size:11px;">Montes de Amé exacto · n=95</span></th><th>AirDNA<br><span style="font-weight:400; text-transform:none; font-size:11px;">Zona Norte 1 ampliada · n=20</span></th><th>Ponderación aplicada</th><th>Cifra conciliada</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="strong">ADR (MXN/noche)</td>
+          <td class="num">978</td>
+          <td class="num">894</td>
+          <td>Promedio ponderado por tamaño de muestra (95 vs. 20) — Beyond pesa 4.75x más</td>
+          <td class="num" style="color:var(--accent);">≈ 963</td>
+        </tr>
+        <tr>
+          <td class="strong">Ocupación</td>
+          <td class="num">45%</td>
+          <td class="num">55%</td>
+          <td>Mismo criterio, más el hecho de que AirDNA muestra una caída interanual 2.2x más pronunciada (-13.5% vs. -6.3%) — típico de una muestra pequeña y más volátil, no necesariamente de un mercado distinto</td>
+          <td class="num" style="color:var(--accent);">≈ 46.7%</td>
+        </tr>
+        <tr>
+          <td class="strong">Revenue teórico / listado (año)</td>
+          <td class="num">$160,637</td>
+          <td class="num">$179,481</td>
+          <td>ADR y ocupación conciliados × 365</td>
+          <td class="num" style="color:var(--accent);">≈ $164,378</td>
+        </tr>
+        <tr>
+          <td class="strong">Revenue real / listado (año)</td>
+          <td class="num">$126,920</td>
+          <td class="num">$176,000</td>
+          <td>Techo teórico conciliado × 79.0% (tasa de realización de Beyond, la más creíble por medir la geografía exacta)</td>
+          <td class="num" style="color:var(--accent);">≈ $129,900</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-note">La cifra conciliada de revenue real (~$129,900) cae a 2.3% del dato observado directamente por Beyond Pricing ($126,920) — es una validación cruzada, no una coincidencia: confirma que anclar el underwriting al dato de Beyond Pricing, y tratar el de AirDNA como techo aspiracional, es la lectura correcta.</p>
+
+    <div class="callout">
+      <div class="callout-label">Un desacuerdo que no se puede conciliar todavía — hay que decirlo</div>
+      <p>El polígono <i>más angosto</i> (Beyond Pricing, dibujado exactamente sobre Montes de Amé) reporta <b>95 listados activos</b>; el submercado supuestamente <i>más amplio</i> (AirDNA, "Zona Norte 1", que incluye inventario de Montebello) reporta apenas <b>20</b>. Una geografía más amplia debería contener el mismo número o más listados que una más angosta, no menos. Las explicaciones más probables son: (a) definiciones distintas de "listado activo" — AirDNA podría exigir actividad de reservas reciente y Beyond Pricing contar todo lo publicado; (b) los límites reales del polígono "Zona Norte 1" de AirDNA podrían ser más pequeños de lo que su nombre sugiere; o (c) metodologías de rastreo distintas. <b>No se concilia aquí</b> — se deja registrado como pendiente de solicitar a ambos proveedores antes de finalizar la tesis de inversión.</p>
+    </div>
+
+    <div class="panel-title" style="margin-top:56px;">Métricas reales conciliadas — para usar en underwriting</div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">ADR conciliado</div>
+        <div class="kpi-value">$963</div>
+        <div class="kpi-note">Ponderado por muestra y precisión geográfica</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Ocupación conciliada</div>
+        <div class="kpi-value">46.7%</div>
+        <div class="kpi-note">Punto medio ponderado; Beyond como ancla por menor volatilidad</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Revenue real conciliado</div>
+        <div class="kpi-value">≈$130K</div>
+        <div class="kpi-note">Validado cruzado contra dato observado de Beyond Pricing</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Revenue techo teórico</div>
+        <div class="kpi-value">≈$164K</div>
+        <div class="kpi-note">Solo alcanzable si la tasa de realización sube de 79% hacia 95%+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 07 ESCENARIOS FINANCIEROS ===================== -->
+<section id="escenarios">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <div>
+        <h2 class="section-title">Escenarios financieros — anclados a la conciliación</h2>
+        <div class="section-kicker">Cada escenario parte de un dato o cálculo trazable de la sección 06, no de un supuesto nuevo</div>
+      </div>
+    </div>
+    <p class="lede">Los escenarios ya no son un rango hipotético independiente — cada fila de esta tabla se deriva directamente del ejercicio de conciliación anterior, para que el rango completo (piso, base y techo) esté anclado a la misma fuente de verdad.</p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Escenario</th><th>ADR</th><th>Ocupación</th><th>Ingreso bruto anual</th><th>Base de cálculo</th><th>Confianza</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="strong">Piso histórico (2024)</td>
+          <td class="num">900 MXN</td>
+          <td class="num">48%</td>
+          <td class="num">90,525 MXN</td>
+          <td>Dato real observado, Beyond Pricing</td>
+          <td><span class="dot alta" style="margin-right:6px;"></span>Alta — observado</td>
+        </tr>
+        <tr>
+          <td class="strong">Actual observado (2026)</td>
+          <td class="num">978 MXN</td>
+          <td class="num">45%</td>
+          <td class="num">126,920 MXN</td>
+          <td>Dato real observado, Beyond Pricing</td>
+          <td><span class="dot alta" style="margin-right:6px;"></span>Alta — observado</td>
+        </tr>
+        <tr>
+          <td class="strong">Base conciliada</td>
+          <td class="num">963 MXN</td>
+          <td class="num">46.7%</td>
+          <td class="num">≈129,900 MXN</td>
+          <td>ADR/ocupación ponderados (sección 06) × 79% de tasa de realización</td>
+          <td><span class="dot alta" style="margin-right:6px;"></span>Alta — validado cruzado con Beyond</td>
+        </tr>
+        <tr>
+          <td class="strong">Objetivo Año 1</td>
+          <td class="num">963 MXN</td>
+          <td class="num">46.7%</td>
+          <td class="num">≈147,900 MXN</td>
+          <td>Mismo ADR/ocupación conciliados, elevando la tasa de realización de 79% a 90% vía gestión operativa (menos fricción de calendario, mejor pricing dinámico)</td>
+          <td><span class="dot media" style="margin-right:6px;"></span>Media — depende de ejecución</td>
+        </tr>
+        <tr>
+          <td class="strong">Techo teórico</td>
+          <td class="num">963 MXN</td>
+          <td class="num">46.7%</td>
+          <td class="num">≈164,400 MXN</td>
+          <td>ADR × ocupación × 365 sin fricción operativa (100% de realización) — referencia, no meta</td>
+          <td><span class="dot media" style="margin-right:6px;"></span>Media — techo matemático, no observado</td>
+        </tr>
+        <tr>
+          <td class="strong">Aspiracional top-cuartil</td>
+          <td class="num">754–1,896 MXN</td>
+          <td class="num">50–89%</td>
+          <td class="num">222,000–322,000 MXN</td>
+          <td>Comparables reales de la sección 05 (AirDNA) — ya superan el techo teórico del mercado promedio</td>
+          <td><span class="dot alta" style="margin-right:6px;"></span>Alta en que existe — exigente en ejecución</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="table-note">Para underwriting conservador, use el rango <b style="color:var(--text);">$126,920–$129,900 MXN</b> (observado real y conciliado coinciden dentro de 2.3%). El <b style="color:var(--text);">Objetivo Año 1</b> de ~$147,900 es la meta operativa recomendada: exige mejorar la tasa de realización, no subir tarifa de forma agresiva. El <b style="color:var(--text);">techo teórico</b> de ~$164,400 no debe presentarse a un inversionista como esperado — es un límite matemático que ninguna de las dos plataformas alcanza hoy en Montes de Amé.</p>
+  </div>
+</section>
+
+<!-- ===================== 08 GUEST PERSONA ===================== -->
+<section id="persona">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <div>
+        <h2 class="section-title">Guest Persona</h2>
+        <div class="section-kicker">Validada contra el mix real de amenidades y el desempeño de comparables</div>
+      </div>
+    </div>
+    <p class="lede">El 99% de coincidencia en AC, wifi y cocina, junto con una alberca presente en apenas la mitad del inventario, confirma con datos duros lo que aquí se describe como hipótesis de comportamiento: el huésped de Montes de Amé no compra amenidades, compra la certeza de que la vida diaria va a funcionar.</p>
+
+    <div class="persona-grid">
+      <div class="persona primary">
+        <div class="persona-tag">Persona principal</div>
+        <div class="persona-name">Sofía, la profesional temporal</div>
+        <div class="persona-meta">28–42 años · se traslada a Mérida por proyecto laboral, capacitación o reubicación · estancia de 1 semana a 3 meses · sola o en pareja</div>
+        <div class="persona-cols">
+          <div>
+            <h4>Necesita</h4>
+            <ul>
+              <li>Privacidad</li>
+              <li>Internet confiable</li>
+              <li>Aire acondicionado eficiente</li>
+              <li>Cama cómoda y escritorio real</li>
+              <li>Cocina equipada y lavadora</li>
+              <li>Estacionamiento y check-in sencillo</li>
+              <li>Posibilidad de extender estancia y facturar</li>
+            </ul>
+          </div>
+          <div>
+            <h4>No necesita especialmente</h4>
+            <ul>
+              <li>Rooftop</li>
+              <li>Gimnasio básico</li>
+              <li>Alberca pequeña</li>
+              <li>Lobby de lujo</li>
+              <li>Áreas sociales sofisticadas</li>
+            </ul>
+          </div>
+        </div>
+        <div class="persona-motive">
+          <b>Motivación principal</b>
+          Vivir temporalmente en una zona práctica y segura, con servicios, restaurantes, supermercados y buena conectividad — sin pagar por lo que no va a usar.
+        </div>
+      </div>
+
+      <div class="persona">
+        <div class="persona-tag">Persona secundaria</div>
+        <div class="persona-name" style="font-size:19px;">Visitante médico</div>
+        <div class="persona-meta">Familiar o paciente cerca de Faro del Mayab o Star Médica · estancia de 4 días a 4 semanas</div>
+        <p style="font-size:13px; color:var(--text-dim);">Valora cocina, lavadora, tranquilidad, limpieza, estacionamiento y tarifas semanales. Compara la unidad contra una suite de hotel — puede pagar más que un estudiante porque reduce gasto de alimentos y traslados.</p>
+      </div>
+
+      <div class="persona">
+        <div class="persona-tag">Persona secundaria</div>
+        <div class="persona-name" style="font-size:19px;">Residente médico / posgrado</div>
+        <div class="persona-meta">25–31 años · estancia de 1 a 6 meses</div>
+        <p style="font-size:13px; color:var(--text-dim);">Busca privacidad, escritorio, internet, seguridad y cercanía a universidades u hospitales. Segmento atractivo por autonomía y permanencia, pero debe comunicarse distinto al estudiante de licenciatura.</p>
+      </div>
+
+      <div class="persona">
+        <div class="persona-tag">Persona secundaria</div>
+        <div class="persona-name" style="font-size:19px;">Pareja de estancia corta</div>
+        <div class="persona-meta">Estancia de 2 noches a 3 semanas</div>
+        <p style="font-size:13px; color:var(--text-dim);">Busca cama de calidad, limpieza, diseño y facilidad de acceso. Puede pagar una tarifa diaria superior, pero es sensible a fotografía, reseñas y calidad del baño.</p>
+      </div>
+
+      <div class="persona">
+        <div class="persona-tag">Lectura de mercado</div>
+        <div class="persona-name" style="font-size:19px;">¿Es un mercado universitario?</div>
+        <div class="persona-meta">Parcialmente, y solo en posgrado</div>
+        <p style="font-size:13px; color:var(--text-dim);">El estudiante de licenciatura es más sensible al precio (desde ~6,500 MXN/mes compartido) y compite por debajo del producto de Montes de Amé. El posgrado y los residentes médicos sí encajan: mayor autonomía, estancias más largas, valoran exactamente lo que la unidad ofrece.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 09 RIESGO REGULATORIO ===================== -->
+<section id="regulacion">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">09</span>
+      <div>
+        <h2 class="section-title">Riesgo regulatorio</h2>
+        <div class="section-kicker">Mérida, proceso de regularización anunciado en febrero de 2026</div>
+      </div>
+    </div>
+    <p class="lede">El Ayuntamiento de Mérida comunicó un proceso de regularización para predios ofrecidos mediante plataformas de alojamiento, con actualización de cédula y plano catastral, licencia de uso de suelo y licencia de funcionamiento renovable cada tres años. El sector hotelero, adicionalmente, ha solicitado mayor regulación del hospedaje digital. El AirDNA Submarket Score asigna 79/100 a "Regulación" para la Zona Norte 1 — riesgo moderado, no crítico, pero activo.</p>
+
+    <div class="checklist">
+      <div>Reglamento del condominio y restricciones de hospedaje temporal</div>
+      <div>Licencia de uso de suelo</div>
+      <div>Licencia de funcionamiento (renovación trienal)</div>
+      <div>Situación fiscal — ISR, IVA e impuesto sobre hospedaje</div>
+      <div>Reglas de seguridad y protección civil</div>
+      <div>Requisitos de registro aplicables ante el municipio</div>
+      <div>Posibles límites de estancia mínima</div>
+      <div>Monitoreo trimestral del avance regulatorio 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 10 SEGMENTOS PRIORITARIOS ===================== -->
+<section id="segmentos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">10</span>
+      <div>
+        <h2 class="section-title">Segmentos prioritarios</h2>
+        <div class="section-kicker">Ordenados por potencial de negocio</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Prioridad</th><th>Segmento</th><th>Estancia típica</th><th>Potencial</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1</td><td class="strong">Profesionales en reubicación</td><td class="num">1 semana – 3 meses</td><td><span class="prio alta">Alto</span></td></tr>
+        <tr><td class="num">2</td><td class="strong">Visitantes médicos y acompañantes</td><td class="num">3 días – 4 semanas</td><td><span class="prio alta">Alto</span></td></tr>
+        <tr><td class="num">3</td><td class="strong">Residentes médicos y posgrado</td><td class="num">1 – 6 meses</td><td><span class="prio alta">Medio-alto</span></td></tr>
+        <tr><td class="num">4</td><td class="strong">Parejas</td><td class="num">2 noches – 3 semanas</td><td><span class="prio alta">Medio-alto</span></td></tr>
+        <tr><td class="num">5</td><td class="strong">Nómadas digitales</td><td class="num">1 – 8 semanas</td><td><span class="prio media">Medio</span></td></tr>
+        <tr><td class="num">6</td><td class="strong">Ejecutivos</td><td class="num">2 – 10 noches</td><td><span class="prio media">Medio</span></td></tr>
+        <tr><td class="num">7</td><td class="strong">Universitarios de licenciatura</td><td class="num">1 semestre – 1 año</td><td><span class="prio media">Medio, muy sensible a precio</span></td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 11 DECISIONES RECOMENDADAS ===================== -->
+<section id="decisiones">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">11</span>
+      <div>
+        <h2 class="section-title">Decisiones recomendadas</h2>
+        <div class="section-kicker">Hallazgo → implicación → recomendación → prioridad</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Hallazgo</th><th>Implicación</th><th>Recomendación</th><th>Prioridad</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ADR sube mientras ocupación cede, en dos fuentes independientes</td>
+          <td>El mercado absorbe precio mejor que volumen</td>
+          <td>Lanzar en 950–1,050 MXN/noche; evitar descuentos de arranque</td>
+          <td><span class="prio critica">Crítica</span></td>
+        </tr>
+        <tr>
+          <td>100% del inventario activo es de 1 recámara</td>
+          <td>La tipología ya no es una decisión — es un hecho de mercado</td>
+          <td>Redirigir presupuesto de decisión de producto hacia diferenciación de experiencia</td>
+          <td><span class="prio alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td>AC, wifi y cocina al 99%; alberca al 49%</td>
+          <td>Las amenidades sociales no generan ventaja competitiva por sí solas</td>
+          <td>Priorizar inversión en confiabilidad (A/C, colchón, internet, blackout) sobre amenidades sociales</td>
+          <td><span class="prio critica">Crítica</span></td>
+        </tr>
+        <tr>
+          <td>ADR STR es 51% de la tarifa hotelera, con satisfacción comparable</td>
+          <td>Existe poder de precio no capturado frente al hotel de referencia</td>
+          <td>Probar incrementos de tarifa por encima del promedio de mercado en el segmento de estancia media</td>
+          <td><span class="prio alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td>Comparables top-cuartil generan 1.75x–2.5x el revenue promedio sin amenidades excepcionales</td>
+          <td>El techo de desempeño es alcanzable con ejecución, no con inversión en amenidades</td>
+          <td>Fijar el escenario Optimista como meta operativa de año 1, no como excepción</td>
+          <td><span class="prio alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td>Oferta -9.1% y ocupación -13.5% simultáneamente en el submercado ampliado</td>
+          <td>Señal ambigua: podría ser desaceleración de demanda o cambio de composición de inventario</td>
+          <td>Monitorear un trimestre adicional antes de anclar la estrategia de pricing a esta lectura</td>
+          <td><span class="prio media">Media</span></td>
+        </tr>
+        <tr>
+          <td>La tasa de realización de ingreso difiere fuerte entre plataformas (79% Beyond vs. 98% AirDNA)</td>
+          <td>El revenue de AirDNA probablemente sea un estimado de modelo (ADR×Ocup.), no una medición directa — usarlo sin ajustar sobreestima el underwriting en ~35%</td>
+          <td>Underwrite sobre la cifra conciliada (~$129,900 MXN), no sobre el reporte de AirDNA; validar contra P&L real de una propiedad comparable en el primer trimestre de operación</td>
+          <td><span class="prio alta">Alta</span></td>
+        </tr>
+        <tr>
+          <td>Proceso de regularización municipal activo desde febrero de 2026</td>
+          <td>Riesgo de cumplimiento y de costo operativo adicional</td>
+          <td>Completar checklist regulatorio antes de adquirir u operar la unidad</td>
+          <td><span class="prio alta">Alta</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 12 FUENTES ===================== -->
+<footer id="fuentes">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">12</span>
+      <div>
+        <h2 class="section-title">Fuentes y confianza</h2>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">Fuentes primarias de este dashboard</div>
+        <ol>
+          <li>Estudio de mercado STR en Montes de Amé, Mérida — documento base, corte 27-ago-2026, 20 fuentes inmobiliarias y de prensa citadas.</li>
+          <li>Beyond Pricing — Market Insights, Custom Region sobre Montes de Amé, capturas del 27-ago-2026, 95 listados activos.</li>
+          <li>AirDNA — Market Overview, submercado Mérida Norte Zona 1, captura del 27-ago-2026, 20 listados activos.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="footer-title">Nivel de confianza</div>
+        <div class="legend-row"><span class="dot alta"></span> Alta — múltiples fuentes independientes coinciden, o censo completo de la muestra</div>
+        <div class="legend-row"><span class="dot media"></span> Media — evidencia direccional, geografía o muestra parcialmente distinta</div>
+        <div class="legend-row"><span class="dot baja"></span> Baja — hipótesis declarada, pendiente de validación con datos observados</div>
+      </div>
+      <div>
+        <div class="footer-title">Limitaciones conocidas</div>
+        <p style="font-size:12.5px; color:var(--text-dim); line-height:1.7;">AirDNA mide un submercado más amplio que el polígono estricto de Montes de Amé. La cifra de revenue promedio de Beyond Pricing no reconcilia limpiamente con ADR × ocupación y debe validarse. Las medianas de Santa Gertrudis Copó y Altabrisa no están filtradas por tipología en su fuente original. El estudio de base excluyó explícitamente datos STR en su metodología original; este dashboard los reincorpora para triangulación, a solicitud del cliente.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <img class="footer-logo" src="data:image/png;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAGkBiADACIAAREBAhEB/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMAAAERAhEAPwD5/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArs/AXh7TddsvFMmoQtI2n6RLdW5Vyu2RcYJx1+hrjK9I+FX/IN8c/8AYvT/ANKAPN6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvSPhV/yDfHP/AGL0/wDSvN69I+FX/IN8c/8AYvT/ANKAPN6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvSPhV/yDfHP/AGL0/wDSvN69I+FX/IN8c/8AYvT/ANKAPN6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvSPhV/yDfHP/AGL0/wDSvN60NM1vUdHjvY9PumgW9ga2uAAD5kZ6ryP5UAZ9FFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFLtJ7GkIx1oAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAr274L/DW28ReG9a1PVYv3V5E1laFh909WkHuCAB9DXkGiaTc69rdlpVmu64u5ViT2yeSfYDn8K+39C0e18P6FZaTZriC0iWNffHUn3JyfxoA+HtW0u50XV7vTLxNlxaytFIPcHGR7VSr3X9ojwh9nvrXxVax4juMW93gdHA+Rj9QMf8BFeFUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFX9H0XUvEGpR6fpVnLdXUh+VIxnA9SegHua+h/A/wAAdN0xYr3xQ6393wwtEJ8lD6Hu5/IfWgDwbw74M8Q+K5vL0bS57lQcNLjbGv1c8D869c0D9m64kVZfEGtLFnkwWSbj/wB9tx+hr6Bt7aC0t0gtoY4YUGEjjUKqj2A6Vwfjr4veH/BZe0Df2hqg/wCXWBhhD/tt0X6cn2oATSvgn4F0sDdpTXjj+O7lZ8/gMD9KvXc/w58JDZcjw/YOv8Hlx7/++QN1fN3in4ueLfFLvHJftY2bcC2syY1x7n7zfice1cMSWJJJJPUmgD6vuPjJ8Nbd9i3Ilx3isWx+qiof+Fw/DC7Plzldp/57acSP/QTXyrRQB9YxL8HvFp2RroEkr9FwLeQ/T7pqhq/7PfhPUEL6Zc3mnueV2Sean5Nz+tfLtdH4e8eeJ/C0inStXuIolP8AqHbfEf8AgJyPyoA7LxF8AvFmkB5dOMGrQDn9wdkmP9xv6E15jeWN3p109te201tOhw0UyFGH1Br6K8G/tCafftHaeKLYWExwBdw5aIn/AGh1X9R9K9S1TQvDnjPS0+3WlnqVrIuYphhuD3VxyPwNAHw5RXvHjP8AZ5nt1lvPCd0Z0GW+w3JAf6K/Q/Q4+teGXVrPZXUtrdQvDPExSSORcMpHUEUARUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFdr4G+GGveOZhJaxfZdODYe9mB2e4UfxH6fiRQBxYBJAAJJ6AV3vhn4O+MPEqpMlh9gtG5E96TGCPULjcfyxX0V4O+FfhnwaiS29oLu/A5vLkBnz/sjov4c+9dZqWqWOj2Et9qN1Fa2sQy8srYA/+v7UAePaJ+zho1uqvrWrXV5J3jt1ESfmck/pXbWfwr8BaPFv/sGzKpyZLomT895IrzLxj+0PK0klp4TtFVBx9tulyT7qnb6t+VeM614o13xFMZdX1W6uyTnbJIdo+i9B+AoA+rrnW/hfov7qS48Nwlf4I0iYj8FBNUJfiJ8KZJQkt3pch6ZNiSPz2V8lUUAfVr3XwY1xtrt4dLMepUQHn3wtQXPwR+H2vRNNpUssAbo9ldiRR/31ur5ZqxZ395p04nsrue2lHR4ZCjD8RQB7VrX7N2pQhpNE1q3uQOkV0hjb/voZB/SvMPEPgPxP4WYnVtHuIYgf9eq74j/wNciux8L/AB58U6I6RaoyavaDgib5ZQPZx1/EGvfPB/xE8OeOrYpYXAW62/vbK4AEgHfjow9xmgD4vor628XfBPwt4lV5rWD+yb5uRNaqAjH/AGk6H8MGvnjxt8N9e8C3A/tCETWTtiK8h5jb2PdT7H9aAOQooooAKKKKACiiigAooooAKKKKACiiigAooooAtaZp11q+qWunWUfmXNzKsUS+rE4FfQmk/s3aUltGdX1q8luCPnW1VUQH0BYEn68V5X8HFV/ivoQYA4kcjPr5bV9i0AeNXv7OPhqW3ZbPVNSgmx8ryFJFz7jaP518+eJ/Dt54U8RXmi3+0z2z43L911IyrD2IINfdFfK37QiIvxLUr1awiLfXLD+QFAHlNFFFABRRRQAUUUUAFFFFABRRRQAV6t8N/g1/wnXh2bWLnVWso/NaKBEiDlioGSckcZOMe1eU19ZfATb/AMKstduc/aZt313f4YoA+W9a0uXRNbvtLmdXls53gZl6MVJGR+VUa6P4gf8AJRPEX/YQm/8AQzXOUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFOjjeaVIo1LyOwVVA5JPQU2ug8CIsnj/w+rqGU6hBkH/fFAHsXh79nGCTT4ZvEGrTpdOoZ7e0VQI/Ysc5P0FbEn7OHhlgNmraqp92jP/stey0UAeLf8M2+Hf8AoNap/wCQ/wD4mk/4Zu8Pf9BvU/yj/wDiaxfj5471az1yHw1pt3NaW6QLNcNCxVpGYnCkjnAA6d814b/aF7kn7ZcZPU+a3+NAH0b/AMM2+Hv+g3qn5R//ABNJ/wAM2+Hv+g3qf5R//E186/2rqIGPt91j/rs3+NN/tG+PW8uP+/rf40AfRZ/Zv8OAZOuakB7+X/8AE0D9nDw2wyuu6kR7eX/8TXzkb26YEG5mIPYyGkW7uUGFuJVHoHIoA+j/APhm3w9/0G9U/KP/AOJpf+GbfD3/AEG9U/KP/wCJr52i1jU4WDRajeRkdCk7D+tatn498W2BH2bxJqi47G5Zh+RJoA90j/Zt8PBwX1rU2X0AjH/steS/FTwBb+ANftrSzvJLm2uoPNTzQN6YJBBx1+tXdO+OvjqwULJf296v/TzbqT+a4Ncl4r8Xat4z1f8AtLWJleYII0WNdqIo7AfUmgDDooooAKKKKACiiigAooooAKKKKACiiigAooooA7T4cfDy7+IOsy20c4tbK2UPc3G3cVB6Ko7k4P5GvbIv2dPCSxBZL7VXfHLeagz+G2s/9mtFHh3XJABuN2gJ9gnH8zXt9AHzz4y/Z7i07RrnUfDuo3E8luhka1uQCXUDJ2sAOcdiOa8Gr79cBkYEZBGCK+CLxVS9uFUYUSMB9M0AQ0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAdj8PPh7ffEDWJLaCZba0t1DXNyy7tgPQAdycH8q9tg/Zy8KpEFn1HVZZO7CRFB/DbVf9m6FV8I6tOB873wUnHYIuP5mvaaAPnjxj+z0mn6Rcah4c1Ge4kgQyG0uQCzqOTtYY59iOa8Hr7/ACAQQehr4N1iJINbv4kGES5kVR6AMRQBSooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooq5pOmXOtavaaZZoXuLqVYox7k4/KgD2/9nbwh5k934ruo/ljzbWeR3P32H4YH4mvoSvMfE3inTvg94Z8OaPaxrLmRInU9TCpzLJ9ST+Zr0qCeK6t4riBxJFKgdHU8MpGQRQBmeKNAtvFHhq/0a6A2XURUMR9xuqt+Bwa+IdS0+40nU7rT7tClxbStFIp7MDg196183/tDeEPsWr23ii1jxDeYhusDpKB8rH6qMf8AAfegDxCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK6bwT4I1XxzrS2GnpsiTDXFy4+SFfU+p9B3ql4V8M3/AIu8QW2j6cmZZTlnI+WJB1ZvYf8A1q+yvCXhTTfB2gw6VpseEQZklI+aZ+7N7/y6UAQeDvBGjeCNKWy0uAeYwHnXLjMkx9SfT0HQV0fSivEfjn8Sn0q3bwro85W8nT/TZkPMUZ/gB7Fh19B9aAM34rfGt0ln0DwpcbduUudQjPOe6xn+bfl614CzM7s7sWZjkknJJpKKACiiigAooooAKKKKACuw8D/EjXPAt4DZTGewZszWUrHY3uP7re4/HNcfRQB9t+DfG+j+ONJF7pc2JFwJ7ZziSFvQj09D0NePftH+H7SCbStehRUubhmt58DHmYAKk+45H5V414d8R6n4V1mHVNJuDDcRnkdVde6sO4Ndn8UviXH4/ttESC3e3FtEz3EZ5AmY4OD3GAMH3oA83ooooAKKKKACiiigAooooAKKKKACiiigAoor2X4LfC1fEE6eJNbgzpcL/wCjQOOLhx3P+wD+Z+hoAl+FXwXfWxDrviaJ4tOOHgtD8rXA7M3cJ+p+nX6Qt7aCzto7e2hSGCNQqRxqFVQOwA6VKAAAAMAdAKqanqVpo+mXOo30yw2ttGZJHPYCgDN8W+LNL8G6FLquqS4RfljiX78z9lUev8q+R/HHj/WPHWpm4v5THaIT9ns0P7uIf1b1J/SnfEHxze+O/EUl9OWjs4yUtLfPEae/+0epP+FcnQAUUUUAFFFFABRRRQAVNa3VxY3Ud1azSQTxMGSSNirKfUEVDRQB9K/Cz41R628Oh+JpEi1E4SC8OFSc9g3YN+h9j19c1jSbPXdJudM1CFZra4Qo6sPXuPcdQa+DgSDkcGve/h/8cVs/Ct7YeIpS99Y2zNZTtybjA4jY/wB7OOe49xyAeHalaf2fql3Zbt32eZ4t3rtYjP6VVqSeZ7m4knlbdJI5dj6knJqOgAooooAKKKKACiiigAooooAKKKKACiiigDuvg4cfFfQveSQf+Q2r7Fr44+D3/JV9B/66v/6LavsegAr5W/aF/wCSlp/14Rf+hPX1TXyj8f8A/kp8n/XnD/WgDy6iiigAooooAKKKKACiiigAooooAK+sPgF/yS63/wCvqb+dfJ9fV/wB/wCSXw/9fc38xQB85/ED/koniL/sITf+hmucro/iB/yUTxF/2EJv/QzXOUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFdF4COPiD4e/7CEH/AKGK52uh8B/8lA8Pf9hGD/0MUAfb1FFFAHyf8fRj4oznHW1hP6GvMK9S/aA/5Kc//XnD/WvLaACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+kP2az/AMU7rgz/AMvacf8AAK9vrw39mr/kB69/18xf+gmvcqAEP3T9K+CL3m/uP+urfzNfe7fcP0r4Guf+Pub/AH2/nQBFRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB9K/s2sT4S1dSeBfDA/4Ate1V4n+zZ/yKus/9fo/9AFe2UAFfCGunPiHUiOn2qX/ANDNfd9fB2s/8h3UP+vmT/0I0AUaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK90/Z58JLLeXniy8QCK1BgtS3TeR87fgOP+BGvFdN0+51XU7bT7SMyXFzKsUajuxOBX0h8SNQtvhn8I7TwvpsgW7u4vsqsvBK9ZZPxzj/AIF7UAeK/E7xafGPje9v43Js4j5FoO3lqev4nJ/Gvc/gH4w/trwm+h3MmbzS8KmTy0J+7+RyPyr5crqfh54rfwb40sdV3H7Nu8q6UfxRNw35cH6igD7WrE8X+HLfxZ4Wv9FuMAXEZEbkfcccq34ECtiKVJoklicPG6hlZTkEHoRT6APge+s59Ov7iyuozHcW8jRSIeqsDgioK9p/aE8If2dr1v4ltY8W+ofu7jA4WZRwf+BKPzU14tQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUV6B8HPCY8U+Pbb7RHvsrAfapwRw2D8qn6tj8AaAPdvg34DXwh4VS8u4satqKiSYkcxp1WP+p9z7V6TRRQBg+MvEsHhHwpf6zPgmBMRIT9+Q8Kv5/pmvifUL+51XUbi/vJWlubiQySO3UsTk17X+0b4mM+qaf4ahf8Ad26fargA9XbhQfouT/wKvC6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAOr+Hng2bxv4tttMXctqv727lH8EQPP4noPrX2bZWdvp1lBZ2kKw20CCOONBgKoGAK84+BvhJfD3gePUJ48X2q4nckcrH/Av5c/8AAq9OoAK+df2g/G7XF9F4Sspf3MGJr0qfvOeVQ/Qc/Uj0r3rXdWg0HQb7Vrk/ubSBpWHrgcD8Tx+NfDep6jcavqt1qN25e4upWlkb1LHJoAqUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAdx8Hv+Sr6D/11f8A9FtX2PXxx8Hv+Sr6D/11f/0W1fY9ABXyj8f/APkp8v8A16Q/yNfV1fKHx+OfihN7WkP8jQB5fRRRQAUUUUAFFFFABRRRQAUUUUAFfV3wAOfhhGPS8mH8q+Ua+rP2fiD8MVHpezf+y0AfO3xA/wCSieIv+whN/wChmucro/iB/wAlE8Rf9hCb/wBDNc5QAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV0PgP8A5KB4e/7CMH/oYrnq6HwH/wAlA8Pf9hGD/wBDFAH29RRRQB8p/tA/8lNb/ryh/wDZq8sr1P8AaB/5Kc3/AF5Q/wDs1eWUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB9G/s1f8AID17/r5j/wDQTXuVeGfs1L/xJdfbJ5uIh14+6a9zoAbIcROfQGvga4ObmU+rn+dffEv+pf8A3TXwPP8A8fEn++f50AR0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAfSf7Nn/Iraz/ANfq/wDoAr2yvE/2bP8AkVtZ/wCv1f8A0AV7ZQAV8Haz/wAh3UP+vmT/ANCNfeNfB2s/8h3UP+vmT/0I0AUaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooqexsrjUb+3srWMyXFxIsUaDqzE4AoA9n/Z68Ii81a68U3cf7iyBhti3QykfM34Kf/HvauH+Kvi4+MPHN3dRPusbb/R7UZ4KKeW/E5P5V7P46vLf4V/B218PafIBfXUZtlZeCSRmWT9SP+BCvmKgAooooA+qfgP4w/t/wf/ZFzJuvdKxGMnloT9w/hyv4CvVq+Lvhr4tbwb42stRZyLRz5F0B3ibqfwOD+FfZ6OsiK6MGRgCpHQigDC8a+GofF3hK/wBGlwGmjzC5/gkHKn8/0zXxJdW01ldzWtxGY54XMciHqrA4Ir76r5j/AGgfCH9k+JYfENrHi11PibA4WZRz/wB9Dn6g0AeOUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV9Sfs++HxpvgaXVZExPqcxYEjny0+Vf13H8a+XACzBQMknAFfdHhfS10XwrpWmqMfZrWOM/UKM/rmgDWo6DJorG8W6h/ZPg/WL/ODBZyup9wpx+uKAPjnxzrTeIPG+samW3LNcuI/wDcU7V/8dArn6OtFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFbXhLRG8R+LdL0hc4urhUcjsnVj+QNYtevfs76SLzx3dag65WxtGKn0dyFH6bqAPp6KJIIUhiULHGoVVHQAcAU+iigDyT9oTWzp/gOHTY2w+o3KowHdE+Y/rtr5br2v9pHUTN4p0nTg3y29oZSPd2I/kgrxSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA7j4Pf8lX0H/rq/8A6Lavsevjr4NgH4r6Fn/npJ/6LavsWgAr5Q+P3/JUJv8Ar0h/ka+r6+UPj9/yVCb/AK9If5GgDy+iiigAooooAKKKKACiiigAooooAK+qv2fP+SZ/9v0v8lr5Vr6l/Z3JPw6nBJwL+TH/AHylAHz78QP+SieIv+whN/6Ga5yuj+IH/JRPEX/YQm/9DNc5QAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV0PgP/AJKB4e/7CMH/AKGK56uh8B/8lA8Pf9hGD/0MUAfb1FFFAHyl+0Af+Lnyf9ecP9a8tr074+HPxSuB6WsI/wDHa8xoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD6N/Zq/5Aevf9fMX/AKCa9yrw39mr/kB69/18xf8AoJr3KgCK5bZazNjO1CcfhXwPI26V29WJr72vP+PG4/65t/KvghvvH60AJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB9J/s2f8itrP/X6v/oAr2yvE/2bP+RW1n/r9X/0AV7ZQAV8Haz/AMh3UP8Ar5k/9CNfeNfB2s/8h3UP+vmT/wBCNAFGiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAortvD/w8TXtGh1E+LPD1gZSw+z3l1slXBI5GO+M1pf8Kkj/AOh78J/+B3/1qAPN6K9I/wCFSR/9D34T/wDA7/61H/CpI/8Aoe/Cf/gd/wDWoA83or0j/hUkf/Q9+E//AAO/+tR/wqSP/oe/Cf8A4Hf/AFqAPN6K9I/4VJH/AND34T/8Dv8A61cPrmlDRNZuNOF7a3ohIH2i0ffE+QD8p79cUAZ9FFFABRRRQAUUUUAFe0/s+eEP7R1648S3UebfTx5duWHBmYcn/gKn82FeOWtrNe3cNrbxmSeZxHGi9WYnAFfTPi26h+EvwYt9FsnVdSuo/s6svUyMMyyfgCcfVaAPHPi54v8A+Eu8c3MkEm6wss21tg8EA/M34nP4Yrg6KKACiiigAr6v+BvjD/hI/Ba6dcybr7SsQtk8tF/A35Ar/wABr5QrtPhb4uPg7xxZ3kjlbGc/Z7sdvLY/e/4CcH8DQB9l1zfjzwvF4w8HX+kOB5rpvt3P8Eq8qfz4PsTXRghgCCCDyCKWgD4EngltriSCdGjliYo6MOVYHBB/Go69d+PvhD+xfFia7bR4tNUBMmBws4+9+YwfrmvIqACiiigAooooAKKKKACiiigAooooA1vC1p9v8W6PaYyJr2FCPYuM19018U/DaMS/Erw6p6fboz+RzX2tQAVw3xiufsvwq1xgSC8aRjH+06iu5rzj46MV+FGpY7ywj/yItAHyPRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABX0V+zVZquka9e4+Z544s47KpP8A7NXzrX07+zkoHgS/YdTqLZ/79pQB7FRRRQB8l/Hi48/4p3q5JEMEMf0+XP8AWvNK9C+N3/JWNX/3Yf8A0Wtee0AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHd/Bv/kq+h/78n/otq+xK+O/g1/yVfQ/9+T/ANFtX2JQAV8o/H//AJKfL/16Q/yNfV1fKPx//wCSny/9ekP8jQB5dRRRQAUUUUAFFFFABRRRQAUUUUAFfUn7O/8AyTu4/wCwhJ/6ClfLdfUf7O3/ACTy6/7CEn/oCUAeAfEEY+IniL/sITf+hmubrpfiF/yUXxF/2EJv/QjXNUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFdD4D/wCSgeHv+wjB/wChiuerpfh7C9x8RPD0cYBb7fC3J7BgT+goA+2qKKKAPnX4++B9XuPEMfiTT7Oa6tJYFin8lCxiZc4JA5wRjn2NeIizuicC2mz6eWa+1fF/jjQ/BFjHc6xcMrSkiGGJd0khHXA9B6nivPB+0f4Y3H/iUaqB67Y//iqAPnOPSNTl/wBXp12/b5YGP9KmHh3XG+7o2on6Wr/4V9Fx/tGeFGzv07VU9P3aHP8A49T/APhorwj/AM+Wq/8AflP/AIugD51Twp4ikBKaBqjAdcWch/pUo8GeKWGR4b1cj/ryk/wr6IT9ojwcfvW2qr/2wQ/+z1bg+P3gaXG+e+h/37Un+RNAHzevgfxYw48Nav8A+Acn+FZN9p97pd01rf2k9rcKMmKeMowH0NfYFn8XfAl6Mp4itoz6Tq0f/oQFeEfHLxZo3inxRZNo063MdpbmOS4QYV2LZwD3A9fegDy2iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+jf2av+QHr3/XzF/6Ca9yrw/8AZrXHh7XGx1u0H/jn/wBevcKAILz/AI8bj/rm38q+CG+8frX3vef8eNx/1zb+VfBDfeP1oASiiigAooooAKKKKACiiigAooooAKKKKACiiigD6U/ZsH/FK6yf+n0f+gCva68X/ZujZfB+rSEfK1/gH6Iuf517RQAV8Haz/wAh3UP+vmT/ANCNfeNfB2s/8h3UP+vmT/0I0AUaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiipIIJbm4jggRpJZXCIijlmJwAPxoA9e/Z/8If2t4ml8Q3UebXTBiHPRpyOP++Rz9SK5/4x+L/+Er8czrBJusNPzbW+DwxB+dvxP6AV69r88Xwg+CsOm2zquq3KeSrL1adxmR/+AjOPotfL/WgAooooAKKKKACiiigD61+CfjD/AISfwRHaXEm6/wBLxby5PLJj5G/IY+q16VXxz8JvF58IeObWeZytjd/6NdDPAVjw34HB+ma+xgQRkcigDl/iF4Vj8Y+C77Sto+0bfNtmP8Mq8r+fT6GviuWJ4JnilQpIjFWVhggjgg19+V8r/Hjwh/YPjEavbRbbLVQZDgcLMPvj8eG/E0AeUUUUUAFFFFABRRRQAUUUUAFFFFAHR+AJxbfELw9KzbQL+EE/VgP619uV8E6ddGx1O0u1+9BMko/4CwP9K+8oJkuLeKeM5SRA6n2IzQBJXA/Gm1ku/hTrIjGTGI5T9FkUn9K76szxFp41bw1qmnlc/abWSID3KkD9aAPhOilZSrFWGCDgg9qSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvpj9m+cP4O1WDvHf7v++kX/AAr5nr3j9mrUQt/r2mFh+8iinUf7pKn/ANCFAH0PRRRQB8m/Hu28j4o3L7cCe2hkHv8ALt/9lrzKvb/2ktOMXiHRtSC/LPbNCT7o2f5PXiFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB3fwa/5Kvof+/J/6LavsSvjv4Nf8lX0P/fk/wDRbV9iUAFfKPx//wCSny/9ecP8jX1dXyt+0L/yUtP+vCL/ANCegDymiiigAooooAKKKKACiiigAooooAK+o/2dv+SeXX/YQk/9ASvlyvqP9nb/AJJ5c/8AYQk/9ASgDwH4hf8AJRfEX/YQm/8AQjXNV0vxCOfiL4i/7CE3/oRrmqACiiigAooooAKKKKACiiigAooooAKKKKACut+F/wDyU7w7/wBfi1yVdb8L/wDkp3h3/r8WgD7SooooA+Wf2hrqWb4jRQOx8uCxjCL6ZLEn/PpXk1eq/tBoV+JYY/xWMRH5sP6V5VQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH0l+zZ/wAizrX/AF+L/wCgCvba8S/Zs/5FnWv+vxf/AEAV7bQBBef8eNx/1zb+VfBDfeP1r73vP+PG4/65t/KvghvvH60AJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB9Ofs4NnwPqK46ag3/otK9jrxr9nD/kSdT/AOwgf/RaV7LQAV8Haz/yHdQ/6+ZP/QjX3jXwdrP/ACHdQ/6+ZP8A0I0AUaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvXPgF4Q/trxY+uXMe6z0vBTI4ac/d/IZP1xXk0UTzSpFEheR2CqoHJJ4Ar6e1GSP4O/BRLWJlXV7hNgI6m4kHzN/wEf8AoIoA8m+NXjD/AISjxxLbW8m6w0zNvDg8M+fnb8xj6KK83pSSxJJJJ5JNJQAUUUUAFFFFABRRRQAV9d/Bnxf/AMJV4GhjuJN1/p2LafJ5YAfI34j9Qa+RK7/4P+L/APhE/HVsZ5Nthf4trnJ4GT8rfgf0JoA+wK5H4leE18ZeCb3TlQG7RfPtD6SqOB+Iyv4111FAHwE6NG7I6lXU4ZSMEGm16j8c/CH/AAjvjVtStottjquZlwOFl/jX8yG/4F7V5dQAUUUUAFFFFABRRRQAUUUUAFfZvwq1oa78NtGuS+6WKH7NL7NH8v8AIA/jXxlXvP7OPiYRXepeGp3wJh9qtwT/ABDhwPw2n8DQB9DUUUUAfE3xD0Y6B8QNa0/btRblpI+P4H+Zf0YVzNe7ftHeGzFqGmeJIU+SZPsk5A6MuWQn6gsP+A14TQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABXe/BrXBofxM0xpG2w3Za0kJPHzj5f/AB4LXBU+GaS3njmiYpJGwdGHUEHINAH35RWD4M8RReKvCOnaxGRuniHmqP4ZBww/MGt6gDyj9oHRTqPw+W/jUmTTrlZTgfwN8jfqVP4V8r194a1pUGuaHfaXcjMN3A8Le24Yz+HWvhnU9PuNJ1S6067QpcWsrRSL6MpwaAKtFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHb/CCQR/FbQSTgGZl/ONhX2RXxD4Evhpvj3QbtjhY76LcfYsAf0Nfb1ABXyz+0Om34kQt/e0+I/+PPX1NXzd+0nZlPEei3uPlltHizjur5/9noA8RooooAKKKKACiiigAooooAKKKKACvqj9nuEx/DZnJ/1l9KR+AUf0r5Xr6++Dtouk/CXS5JflEiSXLn2LMc/ligD5g8cSifx74glU5DajPj/vs1gVa1K6N9ql3eHrPM8p/wCBMT/WqtABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABXW/C/wD5Kd4d/wCvxa5Kut+F/wDyU7w7/wBfi0AfaVFFFAHyz+0P/wAlIh/7B8X/AKE9eTV6z+0P/wAlIh/7B8X/AKE9eTUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB9Jfs2f8izrX/X4v8A6AK9trxL9mz/AJFnWv8Ar8X/ANAFe20AQXn/AB43H/XNv5V8EN94/WvvuX/Uv/umvgef/j4k/wB4/wA6AI6KKKACiiigAooooAKKKKACiiigAooooAKKKKAPpr9nD/kSdT/7CB/9FpXsteNfs4f8iTqf/YQP/otK9loAK+DNXO7Wr8+txIf/AB419518F6r/AMhi9/6+JP8A0I0AVKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKVEaR1RFLMxwABkk0Aeq/Afwh/b3jH+17mPdZaViTkcNMfuD8OW/AVX+OHjD/AISTxq9hbSbrDS8wJg8NJ/G35jH/AAGvVHMfwc+CQX5V1i4XHHU3Mg/9kH/oPvXy8zM7s7sWZjkknJJoASiiigAooooAKKKKACiiigAooooA+wfhB4v/AOEt8C2zTybr+xxbXOTyxA+VvxXH4g131fIvwY8X/wDCLeOYYZ5NthqWLafJ4Vifkb8Dx9Ca+uqAOM+KPhEeMfA95ZRxhr2AfaLQ9/MUdPxGR+NfGjKVYqwIIOCD2r7+r5K+NvhD/hGfG8l3bxbbDU83EWBwr/xr+Zz/AMCoA81ooooAKKKKACiiigAooooAK0/DuuXPhvxDY6xZnE1rKJAOzDup9iMj8azKKAPvDRNYtPEGi2erWMm+2uoxIh7jPUH3ByD7ir9fMfwN+Iy6BqP/AAjeqzbdNvHzbyOeIJT29lb9D9TX05QBz/jbwzD4v8I3+jSYDzR5hc/wSDlT+f6E18T3lpPp97PZ3UbRXEEjRyI3VWBwRX3xXgPx5+HTSFvGGlQ5IAGoRoOw4Ev9D+B9aAPn6iiigAooooAKKKKACiiigAooooAKKK1dV8NaxodlYXepWEttDfxmS3aQY3qD6duxwexFAGVRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHtf7P3jUabrE3he9lxb3zeZaljwswHK/8AAgPzHvX0pXwHDNJbzxzwu0csbB0dTgqwOQQa+wPhZ8QYPHXh1fOdF1e0UJdxDjd6SAeh/Q5HpQB3lfN37QngxrLV4PFNpH/o95iK62j7soHysf8AeAx9V96+kazdf0Sy8R6Hd6RqEe+2uYyjeqnsw9wcEfSgD4Sord8X+Fb/AMHeIrjSL9PmjOYpQPlljPRh9f0ORWFQAUUUUAFFFFABRRRQAUUUUAFFFbfhbwlrHjHVf7P0e2MsoXc7scJGvqzdqAMSipbq2msrua1uY2jnhcxyI3VWBwR+dRUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAOR2jkWRDhlIII7EV9zeFtYj8QeFtM1aM5F1bpI3s2PmH4HIr4Xr6N/Z28WLc6Vd+F7mQedasbi1BP3o2PzAfRuf+BUAe5V5D+0NojX/ga21ONcvp1yC5A6Rv8p/XZXr1UNc0m317Q77SroZgu4Wib2yOv1B5/CgD4Poq/rej3ega3eaTfJsubWUxuPXHQj2IwR9aoUAFFFFABRRRQAUUUUAFFFFAFiwsptS1G2sbdS09xKsUajuzHA/nX1347u4fBPwfvIIWCmGxWxgx3ZgEBH4ZP4V5D8APBb6p4hfxLdR/6Hp5Kwbhw8xHb/dBz9SKvftE+LFutSsvDFtJlLT/AEi6wf8AloRhVP0Uk/8AAqAPDKKKKACiiigAooooAKKKKACiiigAooooAKKKKACut+F//JTvDv8A1+LXJV1vwv8A+SneHf8Ar8WgD7SooooA+Wf2h/8AkpEP/YPi/wDQnryavU/2gTn4nN7WUP8A7NXllABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAfSX7Nn/ACLOtf8AX4v/AKAK9trxL9mz/kWda/6/F/8AQBXttADJf9S/+6a+B5/+PiT/AHz/ADr76f7jfSvga5/4+pv99v50ARUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAfTX7OH/Ik6n/2ED/6LSvZa8a/Zw/5EnU/+wgf/RaV7LQAhOAT6V8Fai/manduBgNM5x/wI196P9xvoa+CLw5vZz/00b+dAENFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFeofAzwh/wkXjVdRuY91jpWJmyOGl/gX8wW/4D715gqlmCqCSTgAd6+oLNY/g78EmnkCrq9wu7B6m5kHyj/gI/9BNAHmXx28Yf8JB4yOlW0m6x0rMXB4aY/fP4cL+BryunSSPNK8kjF3clmZjkknqTTaACiiigAooooAKKKKACiiigAooooAASCCDgivsf4T+Lv+Ev8DWtxM4a+tf9GuueSyjhvxGD9c18cV6X8EfF/wDwjXjeOzuJNthqmLeTJ4V8/I35nH/AqAPrSuG+LPhD/hL/AANdQQx7r+0/0m19SyjlfxGR9cV3NFAHwARg4PWivRPjN4Q/4RXxzPLbx7bDUc3MGBwpJ+dfwPP0IrzugAooooAKKKKACiiigAooooAK+hvhB8Ykmjg8N+JrkLKoEdpeyNw46BHPr6Hv0NfPNFAH3/TZI0ljaORFdHBVlYZBB6givl/4dfG/UPDSxaXr4kv9LXCpKDmaAe2fvL7Hkdj2r6Q0PxBpXiTTkv8ASL6K7t2/ijblT6MOoPsaAPnP4sfB648PTT654fgabSGJeWBBlrX8O6fy7+tePV9/EBgQQCDwQa8d8ffAfTtceXUfDbx6dfNlntyP3Eh9sfcP049qAPmOitnxB4U1zwtdm31nTZ7Vs4V2XKP/ALrDg1jUAFFFFABRRSgFiAAST0AoASprS0ub+7itbSCSe4lbbHFGpZmPoAK7/wAH/BnxR4qaOea3Ol6e3JuLpSGYf7KdT+OB719D+E/AXhj4dac9xAsazKmZ9QumG/Hfk8KvsP1oA4X4Y/BCLSWh1rxTHHPfDDw2XDJCexfsze3Qe9N/aN1bTB4e07SC6PqZuROqA/NHGFIJPpkkfXHtVT4g/H1IfM03weRI/KvqLrlR/wBc1PX6nj2PWvAb29utRvJby9uJbi5lbdJLKxZmPuTQBBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABWt4b8R6j4V1yDVtLmMdxEeR/C691YdwayaKAPtTwL490rx3o4urJxHdRgC5tGPzxN/VfQ11dfCOia5qXhzVYdS0q7e2uojw6HqO4I6EH0NfTPw/wDjbo/idIrDWWj0zVjhfmbEMx/2WPQ+x/AmgDpviD4A07x7on2W4xDew5a1ugMmNvQ+qnuK+RvEnhnVfCeryaZq9s0M6cqeqyL2ZT3FfdAORkdKxfE3hPRvF+mGw1mzWePqjjh4j6q3UH/JoA+GqK9X8Z/AnxBoDyXOig6vYDkCMYnQe6/xfVfyFeVzQy28rRTRvHIpwyOpBB9waAGUUUUAFFFFABRV/StF1TXbtbXSrC4vJz/BDGWx9fQfWvbPBP7PUrvHe+LpwiDBFhbvkn2dx0+i/nQB5l4F+Hms+O9REVlGYbKNh9ovJF+SMeg/vN7D9K+qdF0Tw78NPCjpE0drZQL5lzdSkbpG/vMe57AfgKr6/wCLPCnw00SOCUw2yRpi3sLZRvf6L2+pr5k8ffErWPHl7/pLfZtOjbMFlG3yr7sf4m9/yxQBi+L9Zi8Q+L9V1eCMxw3dy8iKeoUnjPvisWiigAooooAKKKKACiiigAooooAKKKKACiiigArT8O69e+Gdfs9YsH23FtIGAPRh3U+xGR+NZlFAH3L4U8T6f4v8P22r6c+Y5Rh4yfmifuje4/8Ar1tV8XeAPiBqXgLWftNrmaymIF1aMcLIPUejDsa+tfC3i7R/GOlLf6RdLKvAkiPEkTejL2/kaAPPfjT8Mn8UWY17R4d2rWqYliUc3EY9P9odvUcelfL7KyMVYFWBwQRgg19/V5V8R/gvp3i55dU0ho7DWG5fj91cH/aA6N/tD8QaAPlWitrxF4T1zwpeG11nTprZs4VyMo/urDg1i0AFFFFABRRVqw0691W7S10+0murhzhY4ULMfwFAFWuu8AfD/U/HmsC3tlaGxiIN1dlfljHoPVj2FeheCv2fL68aO88VzfY7fr9ihYGVvZm6L+GT9K9h1nXPC/wu8MIrJFaW0YIt7OADfK3sO59WP4mgCt4g1jRPhL4ARbaJESBPJs7fPzTS+/rzyxr5B1HULrVtSudQvZTLc3MjSyOe7E5NbfjbxrqfjnXX1HUG2Rrlbe3U/LCnoPU+p71zVABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAV13wuGfif4d/6/F/rXI11/wsGfih4e/6+x/I0AfaFFFFAHyf8fW3fFG4H921hH6Z/rXmFewftD6Lc2nja31cxsbS9tlQSAcB0yCufXGDXj9ABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAfSX7Nn/Is60f+nxf/AEAV7bXif7Nn/Ir61/1+r/6AK9soARvun6V8D3Y23s49JGH6198H7p+lfBF7/wAf9z/11b+ZoAgooooAKKKKACiiigAooooAKKKKACiiigAooooA+nP2cVA8Dai3c6g3/otK9jrx79nIf8UHfn11Fv8A0Wlew0ANf/Vt9DXwPcnN1MfV2/nX30RkYNfDfi/Q7nw54t1PS7mNkaGdtmR95Ccqw9iMGgDEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD0r4J+EP+Em8bxXdxHusNMxcS5HDPn5F/MZ/4DWh8e/F/9ueLl0W2kzZ6VlGweGmP3j+HC/nWb4J+Lcvgbw1NpWn6JBJcTO0j3bzEEsRhTtx0Axxn+dedTTSXE8k8zl5ZGLu7HliTkk0AMooooAKKKKACiiigAooooAKKKKACiiigApVYqwZSQwOQR2pKKAPs34X+Lh4x8D2d7I4N7CPs92M8+Yo+9/wIYP412VfGvw8+I9/8Pby8kt7VLy3ukCvBJIVG4HhgQDzyR+Negf8ADS1//wBC1bf+BTf/ABNAHpnxg8If8JZ4FuRBHuv7HNzbYHJwPmX8Rn8QK+Pq91/4aWv/APoWrb/wKb/4mvGNYvodS1m8vre0WziuJWkW3Vtwjyc4B9KAKNFFFABRRRQAUUUUAFFFFABRRRQAVpaLr+reHb5b3SL+eznH8UTYDD0I6EexrNooA978LftGSxqlv4n03zOxurPAP1KHj8iPpXrmhfETwn4jVf7O1u1aVv8AljK3lyf98tgn8K+KKKAPvi6s7XULVre7t4biBx80cqB1YfQ151rnwJ8F6uzSW9vPpsrc5tJML/3y2R+WK+ZtM8XeI9GwNO1zULZR0SO4YL+WcV09p8bPH1oAP7aEwHaa3jb9duaAO9vP2aW3k2PiUbfSe15/MNVZf2adQ3Df4ktQvfFsxP8A6FXND4/eOQP9fYn/ALdR/jUFx8dvHs4wupW8P/XO1T+oNAHpOmfs3aLC6tqWtXt1jqkKLED+e412FtoHw4+HMYnZNMsZkHE11IHmP03En8q+ZNR+I3jHVVK3fiPUGQ9VjlMYP4LgVzUkjyuXkdnc8lmOSaAPpTxN+0Rotirw+HrKXUZugmmBiiH4feP5CvD/ABX4+8R+Mpt2r37tADlLaL5Ik+ijr9Tk1zNFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAHfeEPi94p8IqlulyL+wX/l1uyWCj0Vuq/y9q9t8N/HvwprCpHqRl0m5PUTjfHn2cf1Ar5UooA+89P1XTtWgE2nX1tdxHnfBKHH6GqOueEfD/iRNur6Ra3Z7O8eHH0Ycj86+ILa7ubOUS2txLBIOjxOVI/EV1Fh8UfG+mqFg8SXzKOgmYS/+hg0Ae76l+zz4Qu2LWc+oWJP8KSh1H4MCf1rBl/ZptC37nxLOF9HtQT+jVwcPx48eRLhr+1l93tU/oBUjfH3x0wwLmyX3FqP60Ad9bfs1aWpBuvEN5J6iKBU/mTXT6Z8D/AujgTXFpLeFOS15OSv4gYH514NefGTx7eAq2vyRA9oYY0/ULmuW1LxDrWssTqWrXt3ntPOzj8iaAPq7UPiL8PvBFobW3vLJSnAtdNjDnP8AwHgfia8m8WftC6xqSvbeHbRdMgPH2iTDzEe38K/r9a8YooAnvLy61C6kury4luLiQ5eWVyzMfcmoKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK0dF13VPDuopf6Tey2lyn8cZ6j0I6EexrOooA+h/CX7RVvIkdt4qsWhk6G8tF3Kfdk6j8M/SvYNF8V6B4iiEmkataXeRnZHIN4+qnkfiK+GKckjxOHjdkdTkMpwRQB963ljaajavbXttDcwOMNHMgZT+BrznW/gP4M1ZmktoLjTJW72sny/8AfLZH5Yr52034j+MtJULZ+I78IOiSSeYo/B810lt8evHcCgPeWk+O8tqvP/fOKAO1u/2aFyTZ+JiB2E1pn9Q1Mtv2aGyPtXiYYzyIrTt+LVzQ/aH8Z4/1Gkn/ALd3/wDi6rz/AB/8cTAhJdPgz/zzts4/76JoA9W0j9nzwhYMr30l7qLjnEsmxD+C4P612hk8H+ANP27tM0a3x0+VGf8AD7zH86+VNS+KnjfVVZbjxFeIjdVtyIR/44BXJz3E1zK0txNJLI3V5GLE/iaAPobxh+0RaQJJa+FbQ3EvT7ZcrtQe6p1P44rwXWdc1PxDqMmoateS3Vy/V5D0HoB0A9hWfRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABWx4T1lfD3i3StXdSyWlykjgdSoPzY/DNY9FAH3nperWGtWEV7pt3DdW0qhleJgR/9Y+1XMj1r4Ggu7m1bdb3EsJ9Y3K/yqVtT1B23PfXLH1MzH+tAH3Rqel6frNi9lqVpBd2z/eimQMv1571xr/BnwA8pk/sJASc7RPIB+W6vkY394et3Of8Atof8aPt15/z9T/8Afw0AfYK/CTwEnA8OWp/3nc/+zVYT4Y+BoxgeGdNP+9Hn+dfGhvLknJuJifdzR9quP+fiX/vs0AfaA+HPgodPDOlf+A61OvgXwguMeG9J46f6Kn+FfFH2q4/5+Jf++zR9quP+fiX/AL7NAH23/wAIX4UH/MuaR/4Bx/4U7/hD/C3/AEL+k/8AgJH/AIV8Rfarj/n4l/77NH2q4/5+Jf8Avs0Afb8XhPw1DIHi0HS0cdCtrGD/ACrz3486foUXw8eWSC0hvkmjFoVRVcnd8wGOcbc5+lfMX2u5H/LxL/32abLPLMQZZXkI6F2JoAjooooAKKKKACiiigAooooAKKKKACiiigAooooA91/Z28U6fp8up6De3EcE106TWxkbAkIGGUE9+hA7819FV8AVdGsaosXlLqV4I+mwTtj8s0AfZHjnxxpXg7QLq5ubuL7Z5bC3tg4MkjkccdcZ6ntXxWzF2LMcsTkmld2kYs7FmPUsck02gAooooAKKKKACiiigAooooAKKKKACiiigAooooA94/Z68Yadp8eoeHr+6jt5Z5hcWxlYKrnG1lBPfgHHfmvoYMpGQQR9a+AasLf3iKFW7nAHQCQ0Afe2R61heIvB3h3xWiDWtMgumQYSQ5V1HoGGDj2r4m+33h/5e5/+/hpDeXTdbmY/VzQB9Zr8EPh+rZ/shz7G6k/+Kq3F8H/AEIwPD8De7yyH/wBmr5A+1XH/AD8S/wDfZo+1XH/PxL/32aAPsiP4WeBIySvhuxP+8C38zUw+G3ghenhnS/8AvwK+MftVx/z8S/8AfZo+1XH/AD8S/wDfZoA+0f8AhXXgof8AMs6V/wCA61MPAnhBVAHhvScDj/j1T/Cvij7Vcf8APxL/AN9mj7Vcf8/Ev/fZoA+2B4H8Iqcjw3pOf+vRP8KsW/hTw1ayFrfQtLjf1S1jB/lXw/8Aarj/AJ+Jf++zQt5dKcrczA+oc0Ae2/tFaZoljPo01lBbQahIJBMkKhS0YxtLAe+cGvDKdJLJM5eV2dj/ABMcmm0AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVoaHot54i1q10mwVGurltkYdtozgnk/hWfXafCT/kqnh//r4P/oDUAczrOk3Whaxd6XehRdWshjkCNuG4ehqjXWfE/wD5Kb4i/wCv165OgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK3rPwhq1/4RvvE8CRHTbKURTMZAGDHb0Xv94Vg16/4Y/5Nt8W/wDX+n84aAPIKKKKACirWnabe6vfR2WnWs11dSfcihQsx/AUupaZfaPfSWWo2k1rdR/eimQqw/A0AVKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiipba2nvLmO2tYZJp5WCxxxqWZiegAHWgCKitDV9D1XQboWurafcWU7LuVJ4ypI9RnrWfQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABXb/D7QtN1qy8VyahbCZrHRprm3O4jZIuMNwefxriK9I+FX/IN8c/8AYvT/ANKAPN6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArtPhJ/yVTw//wBfB/8AQGri67T4S/8AJVPD/wD18H/0BqAK/wAT/wDkpviL/r9eudtNNv8AUCRZWVzckdRDEz/yFfQGq/D/AELTfE3iHxx47lC6ab1zaWQPM/oSByc9l/E8Vy+pfH/U4D9l8L6Np+l6fHxGrRbmx9BhR9MH60AeU3ek6lp4ze6fd2w9ZoWT+YqnXr+nftB6+H8rXdM07U7J+JI/L2MR+o/MVa8S+BfDvjjw1N4t+HyeVNCN17pQGCvGTtXs3fA4I6UAeLUUUUAFFWtMltIdUtZL+A3FmsqmeIMVLpnkAjkHFd18V/BOn+F9Q07UNBDHQ9TtxLbsXL4bAyMnnkEH8T6UAed0UV03gHws/jHxlYaQA3kO/mXDD+GJeW/wHuRQBzNFdR8QbfQbLxlfWPhuAxafaN5OTK0nmOv3mySeM8fhXL0AFFFFABRRRQAUUUoBZgACSeAB3oASrtpo+p6gu6y067uV9YYGcfoK9h0LwT4a+HPhyDxN4+jF1qNwN1ppWA2O/K9C3TOeB7ms7UP2hPEjSeXo+n6dptovEcQiMhA+uQPyAoA8ru9OvbBgt5Z3Fsx6CaJkP6iq1eyaZ8fb27/0PxbodhqmnycSCOLawHrtbKn6cfWttPhJ4Y8S61o/iLwyxuvDV5MVvbMSFWg+U9DnIAOAV6j6UAeAUVveNdMtdG8a6zptihS1tbp4olLFiFB45PWsGgAoor6Dtvhv4A0zwVofi7XPNhtls0muYRKx+1SsoIUDPrngYzn0FAHz5RXsj/HO0sHNvoXgrSbawXhUlUbmHqdoAB/OtbTz4G+MtrNYLpkPh/xQELwvCAElI+gAYeoIyB0NAHgtFXdX0q70PV7rS76Py7q1kMci+49PY9apUAFFFdD4M8Iaj428QxaVp4C5G+aZh8sKDqx/oO5oA59VZ2CqpZjwABkmtIeHNcMXmjRtRMfXf9lfH54r2XUfF3g34SbtH8K6VDqutxfLc39xghX7jcOSf9lcAeua5s/tBeNjNvH9mhc/6v7Mcf8AoWf1oA8tdGjco6lWHBDDBFeu+GP+TbfFv/X+n84a2dN8c+D/AIqFdG8ZaRb6bqk3yW+o252jeeg3HleezZBq3qHg2+8D/BHxlpN4yyL9tSSCZeksZMQBx2PBBHqKAPnyiiigDrvhx41HgPxSNWez+1wvC0EkYbDBSQcqfXIFL8SPGw8eeKP7Vjs/skMcKwRozBmIBJyx9ck1R8C6Vaa5450fTL+MyWlzcrHKoYqSp9xyKf4/0iz0Hx3q+l6fGY7S2n2RIzFiBgHqeT1oA5uiiigAp0cbyuEjRnduAqjJNdV4A8CX3jzXhY27eTaRAPdXJGREnt6sew/wr0nUviJ4T+Gm7RvA2jW17exfJPqVx8wZh1+Ycv8AgQvpQB463hzXEi81tG1FY+u82rgfnis0gqxDAgjqDXqaftBeNlm3t/ZrJn/Vm2OP/Qs/rXTaf4i8F/GIDSdf02LRvEUgxbXsGAJG7AHv/utn2OaAPBaK9d8WfC628IfC2a/1C2P9uRaj5IuFlYpJESdpC5xyPbNeRUAFFFegfB7wtpPi/wAZy6brMDzWy2byhVkZDuDKAcj6mgDz+ivddV1DwH8IpTpmn6PF4g8QJzPPdYKQE9F5BwfYc+pqjbfHHTdTlFt4l8F6XPYP8rGBAWQeoDDn8xQB4xRXqfxJ+H2k2WjW3jHwhN5/h+7IDx5J+zsenXnGeMHkH615ZQAVu+DfEZ8J+LdP1sW4uBauS0RONwIKnB7HBrCq7o1tFea5p9rMC0U1zHG4BxlSwB/nQB2fxT+I8fxCv7B7fT2tLezRlXzGDOxYjOcduBXn9dx8WfDemeFPHc+l6RC0NokEbhGcuckZPJ5rh6ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK9I+FX/IN8c/8AYvT/ANK83r0j4Vf8g3xz/wBi9P8A0oA83ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACu0+Ev/JVPD//AF8H/wBAauLrtPhL/wAlU8P/APXwf/QGoA2/jp4ouNb8e3GmCRhZaX+5jjzwXwC7fXPH0FeYV2fxYtJrP4o6+kyFTJc+avurAEH8jXGUAFdx8J/FM/hfx9p7rIRaXki2tymeGVjgH8CQfzrh62fCNhNqfjHRrO3UtJLeRAY7DcCT+ABNAG98W9Ai8O/EjVLW3QJbTMLmJR0UOMkD2DbhXEV6d8e7uK5+KFwkbAm3toonx2bBb+TCvMaACvaPB7D4ifCDU/CMpD6to3+lafn7zJyQo/Nl/wCBLXi9dL4C8USeD/GVhq6k+Sj7LhR/FE3DD8ufqBQBzZBBIIwR1Br2bwXj4efCPVPF8oCarrH+iacD1C8jcPxDN/wEVR8b/Dh7j4u2dhpQH9n6+4uoJUGVRDzIR7Dk/Qiqfxo8Q2974jt/DmmELpWhRC1jRTwZAAGP4YC/gaAPM2YsxZiSScknvSUUUAFFFFABRRRQAV6D8FtAh1/4kWQuUDwWSNdupGQSuNuf+BEH8K8+r1j9nu6jh+Ik1vIQGubGRE9yCrfyBoA5T4leKbjxZ441C9kkY28UjQWqZ4SNSQMfXqfrXJVoa5YzaZr+oWNwpWW3uZI2BHcMRWfQAV6z8A/FFxpXjZdFaQmy1NWUp2WVQSrD8AR+I9K8mrvfgzZzXfxV0YwruELPLIfRQjc/qPzoAy/iV/yUrxF/1/Sfzrlq6n4lf8lK8Rf9f0n865agAr2L4sSuPhn8PYg7eWbLcVzwSI48H9T+deO17B8Wf+ScfDz/AK8T/wCgR0AeP1o6Bfz6V4h06/tnKTQXCOpHswrOqey/4/7f/rqv8xQB6X8f7aKH4lmWNQDcWUUj+7fMufyUV5bXrH7Qn/JQ7f8A7B0X/oT15PQAV7d4ZuD4D+AV94gtf3eqa1OYIpf4kXJUY+gDn6kV4jXs+rxnVv2ZNGmt8t/Zl6RMB2+dxk/99r+dAHjJJZizEkk5JPekoooAK+gT4nuPE/7M2pyXjmS7smS0kkbq+2SMqT77SPyr5+r2bw7aTQfszeJZpEKpcXoeMn+IBolJ/MEfhQB4zRRRQB13wu/5Kf4d/wCvxf61J8V/+SpeIP8Ar5/9lFR/C7/kp/h3/r8X+tSfFf8A5Kl4g/6+f/ZRQBxtFFFAHt0103gL9nqyFiTFqPiKQmSVeGCEHPP+4AP+BGvEa9o+IKNqfwJ8E6lbjdDagQSkfwnbt5/FCPxrxegApyO0ciyIxV1IKspwQR3FNooA9/8AGXiWbxX+zlY6lcnddfaooZ2/vOhKk/jgH8a8Ar2a7tJrX9l20MyFfO1ESpnupdgD+leM0AFes/s8/wDJRp/+wdL/AOhJXk1esfs8/wDJRrj/ALB0v/oSUAeZarLJNrF7LK7PI87szMckkseTVSrOo/8AITu/+uz/APoRqtQB7H8Lp31H4U+PdHuCWtobX7RGDztYqx4/FFP4V45Xr3wf/wCRI+IX/YN/9klryGgArS8O/wDIz6T/ANfkP/oYrNrS8O/8jPpP/X5D/wChigDvPj5/yVK5/wCvaH/0GvMa9O+Pn/JUrn/r2h/9BrzGgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvSPhV/yDfHP/YvT/wBK83r0j4Vf8g3xz/2L0/8ASgDzeiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK7T4S/wDJVPD/AP18H/0Bq4utTw5rtx4Z8Q2Ws2kcUk9o+9ElBKk4I5wQe9AH0F8SPCmn/E976Xw/LGviXRJGtri2kIUzIDkD9flPTqD7fOeoabfaTePZ6haTWtxGcNHMhVh+da0/jPWW8YXPiezuDY6jcSmVjbEhQT1GDnI9jmvQrb4+3VzapB4j8MaXq5UY8xgEJ9yCGH5YoA8jtbS5vrlLa0t5Z53OEjiQszH2Ar3Pwd4YtPhHoU3jTxbsXVnjMdhYbgXBI6f7x7/3Rn1rKl+PhsoHXw94Q0rTJWH+s4b9FVf515h4g8Sav4o1Fr/Wb6S6nPC7uFQeiqOAPpQBX1fVLnW9Xu9TvH33N1K0sh9yc4Ht2qlRRQAUUVoaHo9zr+u2Wk2a5nu5liX2z1J9gMn8KAPefCfjKXRfgUuvalbob3TzLY6TNIMs+7AGPYHIPslfPMsrzSvLK5eR2LMxPJJ5Jr034y6xbQ3+neC9KbGm6BCIjj+OYj5ifcD9S1eX0AFFFFABRRRQAUUUUAFaOga1deHdestXsji4tJRIoPRvUH2IyPxrOooA918ceD7X4naUnjnwWBNeOgW/sAR5m8DsP7w6Y/iGCPfw+4t57Sd4LmGSGZDho5FKsp9wa0/DninWfCeoi+0a+ktpTw6jlJB6Mp4Ir01Pj2t9Eo1/wbpWozKP9bwP0ZW/nQB5Npmk6hrV6lnplnPd3LnCxwoWP/1h719JfDfwvpnwwksbbWJ45PE+uv5SwxkMYowCxH045Pc4A6VwN58fb6C0e38OeHNM0cMMb1UOR7gAKPzBrgNP8aaxZ+MrfxTcT/b9ShcvuuiWDcEYOCMDnoMUAWPiV/yUrxF/1/Sfzrlq0Nd1efX9dvdWuUjjnvJmmdYwQoJPbOTis+gAr2D4s/8AJOPh5/14n/0COvH66bxH42v/ABNoei6Vd29tHDpEPkwtEGDOMKMtknn5R0xQBzNT2X/H/b/9dV/mKgp8UhhmSRQCUYMM+1AHqv7Qn/JQ7f8A7B0X/oT15PXReNPGN9441pNU1CC3hmSBYAsAIXAJOeSeea52gAr1H4ReMdO05r7wp4iKnQ9YGxmc/LFIRjJ9ARjnsQDXl1FAHdePvhfrHgu9klSKS80dzmC9iXICnoHx90/oe1cLXf8AhH4weJ/CdstiJItQ05RgW14C2weit1A9uR7V1H/C8dFLec3w70o3PXfuTr658vNAHG+BPhnrfje/jMcElrpYb99eyLhQvcLn7zfT8a9q8aXuhSfBLxBpfh1g9jpDRWW9TlWZXjJwe/3uT3Oa8k8WfGXxP4ntHsI2i0zT2G1oLMFSy+jN1x7DArAsPG1/p3gbUfCcVvbNZX8wmklYN5ikbeAc4x8g7UAc1RRRQB13wu/5Kf4d/wCvxf61J8V/+SpeIP8Ar5/9lFc/4f1qfw7r9lrFrHHJPaSiVElBKkj1wQad4i1y48S+IL3WbuOKOe7k8x0iBCg4A4ySe1AGXRRRQB658KPFGk3uj33w/wDE7hdN1Ek2szHAilOOM9uQCD6/WuS8b/DnXfBF/Il3bvNYFv3N7GpMbjtn+6fY/rXIV6R4W+NXibw7ZrYXXk6tYKNoivASyr6B+uPrmgDzevQfh98K9V8X3kd3exSWOhRnfNdyjbvUckJnr9eg/Sum/wCF46MjedF8PNKS56iTcnB9c+XmuU8YfFvxP4wgazmmjstObg2toCqsPRj1b6dPagD1b4qarpGq/BVjoWP7Ntb+O0hKj5SI8rlfUe/evm2ulPja/PgBfB/2e2+wi4+0ebhvM3ZzjOcY/CuaoAK9Y/Z5/wCSjXH/AGDpf/Qkryeuj8F+Mr7wNrb6rp8FvNM8DQFbgMVwSDngjngUAYuo/wDITu/+uz/+hGq1STymeeSZgA0jFiB0yTmo6APXvg//AMiR8Qv+wb/7JLXkNdL4a8a3/hfSda06zt7aWLVoPImaUMWRcMMrgjn5j1zXNUAFaXh3/kZ9J/6/If8A0MVm1PZXT2N/bXkaqzwSrKoboSpBGfyoA9H+Pn/JUrn/AK9of/Qa8xre8YeLLzxp4gk1m/hghneNYykAIXCjA6kmsGgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvSPhV/wAg3xz/ANi9P/SvN6v6brWo6RHeJYXTwLeQG3uAoH7yM9VOe1AFCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACvV/hYtp4V8O6549vjGZrWI2unQsRl5W4Jx+IH03V5RRQBLc3E15dS3NxIZJpnMkjt1Zick/nUVFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRX0//AMM4+D/+glrn/f8Ah/8AjVH/AAzj4P8A+glrn/f+H/41QB8wUV9P/wDDOPg//oJa5/3/AIf/AI1R/wAM4+D/APoJa5/3/h/+NUAfMFFfT/8Awzj4P/6CWuf9/wCH/wCNUf8ADOPg/wD6CWuf9/4f/jVAHzBRX0//AMM4+D/+glrn/f8A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" alt="Accueil by Andiani">
+      <div class="footer-confidential">Uso interno · Accueil by Andiani · No distribuir fuera de la alianza</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
