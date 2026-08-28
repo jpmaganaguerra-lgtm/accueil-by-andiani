@@ -108,7 +108,7 @@
   function goToReport() {
     document.getElementById('login-btn').style.display = 'none';
     document.getElementById('status-checking').classList.add('show');
-    window.location.href = '/reportes/' + REPORT_ID + '/ver';
+    window.location.href = '/.netlify/functions/report/' + REPORT_ID;
   }
 
   window.netlifyIdentity && netlifyIdentity.on('init', (user) => {
