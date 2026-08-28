@@ -10,10 +10,13 @@
   included_files = ["netlify/functions/_reports/**"]
 
 # Ruta amigable: /reportes/montes-de-ame/ver → la Function que valida sesión
-# y sirve el reporte real (ver netlify/functions/report.js)
+# y sirve el reporte real (ver netlify/functions/report.js). El id viaja como
+# parte de la ruta hacia la función, no como query string — Netlify no
+# garantiza la sustitución de placeholders dentro de un query string en el
+# destino de un redirect, solo en la ruta.
 [[redirects]]
   from = "/reportes/:id/ver"
-  to = "/.netlify/functions/report?id=:id"
+  to = "/.netlify/functions/report/:id"
   status = 200
   force = true
 
