@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MONTANGELO — Propuesta de Fractional Ownership para Jade Urbana</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050505; --panel:#0d0d0f; --panel-2:#121215;
+    --line: rgba(255,255,255,0.09); --line-strong: rgba(255,255,255,0.18);
+    --text:#f3f1ea; --text-dim:#a7a49c; --text-faint:#6c6a63;
+    --accent:#c7a467; --accent-soft: rgba(199,164,103,0.14);
+    --positive:#93ac86; --negative:#c07a5f;
+    --serif:'Fraunces', serif; --sans:'Inter', sans-serif; --mono:'IBM Plex Mono', monospace;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top,0px); padding-bottom: env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#050505; --text:#f3f1ea; } }
+  html{ scroll-behavior:smooth; scroll-padding-top: env(safe-area-inset-top,0px); }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.55; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--accent-soft); color:var(--text); }
+  a{ color:inherit; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 40px; }
+  @media (max-width:720px){ .wrap{ padding:0 20px; } }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .fill-target{ transition:width 1.1s cubic-bezier(.16,.9,.28,1); }
+  .count-up{ font-variant-numeric:tabular-nums; }
+  @media (prefers-reduced-motion: reduce){ .reveal, .fill-target{ transition:none !important; opacity:1 !important; transform:none !important; } }
+
+  /* NAV */
+  .nav{ position:sticky; top:env(safe-area-inset-top,0px); z-index:50; background:rgba(5,5,5,0.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .nav-inner{ max-width:1180px; margin:0 auto; padding:0 40px; display:flex; align-items:center; justify-content:space-between; height:64px; gap:20px; }
+  .nav-mark{ display:flex; align-items:center; gap:12px; flex-shrink:0; }
+  .logo-slot{ width:118px; height:28px; border:1px dashed var(--line-strong); border-radius:2px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:9px; letter-spacing:.06em; color:var(--text-faint); overflow:hidden; }
+  .logo-slot img{ max-width:100%; max-height:100%; object-fit:contain; }
+  .nav-mark-text{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--text-dim); text-transform:uppercase; white-space:nowrap; }
+  .nav-links{ display:flex; gap:20px; overflow-x:auto; scrollbar-width:none; }
+  .nav-links::-webkit-scrollbar{ display:none; }
+  .nav-links a{ font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:var(--text-faint); text-decoration:none; white-space:nowrap; text-transform:uppercase; border-bottom:1px solid transparent; padding-bottom:2px; transition:color .15s ease; }
+  .nav-links a:hover{ color:var(--accent); border-color:var(--accent); }
+  @media (max-width:960px){ .nav-links{ display:none; } }
+
+  /* HERO */
+  .hero{ padding:96px 0 64px; border-bottom:1px solid var(--line); position:relative; overflow:hidden; min-height:560px; display:flex; align-items:flex-end; }
+  .hero-media{ position:absolute; inset:0; z-index:0; }
+  .hero-bg{ position:absolute; inset:0; opacity:.5; background:repeating-linear-gradient(135deg, #0c0d0a 0px, #0c0d0a 2px, #050505 2px, #050505 48px); }
+  .hero-bg::after{ content:'ESPACIO PARA FOTOGRAFÍA / RENDER — coloca tu imagen en assets/img/hero.jpg'; position:absolute; top:14%; right:6%; left:6%; text-align:right; font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:rgba(243,241,234,0.18); }
+  .hero-photo{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:1; }
+  .hero-scrim{ position:absolute; inset:0; z-index:2; background:linear-gradient(180deg, rgba(5,5,5,0.25) 0%, rgba(5,5,5,0.55) 55%, rgba(5,5,5,0.95) 100%); }
+  .hero > .wrap{ position:relative; z-index:3; width:100%; }
+  .eyebrow{ font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:10px; }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--accent); display:inline-block; }
+  h1.title{ font-family:var(--serif); font-weight:400; font-size:clamp(34px,5.4vw,62px); line-height:1.06; letter-spacing:-0.01em; max-width:920px; }
+  h1.title em{ font-style:italic; color:var(--accent); font-weight:400; }
+  .subtitle{ margin-top:26px; font-size:17px; color:var(--text-dim); max-width:640px; font-weight:300; }
+  .meta-row{ margin-top:48px; display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); }
+  .meta-item{ padding:18px 24px 18px 0; border-right:1px solid var(--line); }
+  .meta-item:last-child{ border-right:none; }
+  .meta-label{ font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--text-faint); margin-bottom:6px; }
+  .meta-value{ font-size:14px; color:var(--text-dim); }
+  @media (max-width:800px){ .meta-row{ grid-template-columns:repeat(2,1fr); } }
+
+  /* SECTIONS */
+  section{ padding:88px 0; border-bottom:1px solid var(--line); }
+  .section-head{ display:flex; align-items:baseline; gap:18px; margin-bottom:44px; }
+  .section-num{ font-family:var(--mono); font-size:12px; color:var(--accent); letter-spacing:.08em; }
+  h2.section-title{ font-family:var(--serif); font-weight:400; font-size:clamp(24px,3vw,34px); letter-spacing:-0.01em; }
+  .section-kicker{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); margin-top:6px; }
+  .lede{ font-size:16px; color:var(--text-dim); max-width:760px; margin-bottom:40px; font-weight:300; }
+
+  /* KPI GRID */
+  .kpi-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .kpi{ background:var(--panel); padding:26px 22px; }
+  .kpi-label{ font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); margin-bottom:14px; }
+  .kpi-value{ font-family:var(--mono); font-size:26px; color:var(--text); font-weight:500; letter-spacing:-0.02em; }
+  .kpi-note{ margin-top:8px; font-size:11.5px; color:var(--text-faint); }
+  @media (max-width:900px){ .kpi-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  /* TABLES */
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  th{ text-align:left; font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--text-faint); padding:0 16px 14px 0; border-bottom:1px solid var(--line-strong); font-weight:500; }
+  td{ padding:14px 16px 14px 0; border-bottom:1px solid var(--line); color:var(--text-dim); vertical-align:top; }
+  td.strong{ color:var(--text); font-weight:500; }
+  td.num{ font-family:var(--mono); color:var(--text); }
+  tr:last-child td{ border-bottom:1px solid var(--line-strong); }
+  .table-wrap{ overflow-x:auto; }
+  .table-note{ margin-top:14px; font-size:12px; color:var(--text-faint); max-width:760px; }
+
+  /* RANGE / COMP BARS */
+  .rangechart{ margin-top:8px; }
+  .rrow{ display:grid; grid-template-columns:170px 1fr 110px; align-items:center; gap:18px; padding:14px 0; border-top:1px solid var(--line); }
+  .rrow:last-child{ border-bottom:1px solid var(--line); }
+  .rrow.is-us .rlabel{ color:var(--accent); font-weight:600; }
+  .rrow .rlabel{ font-size:13px; color:var(--text); }
+  .rtrack{ position:relative; height:8px; background:var(--panel-2); border:1px solid var(--line); }
+  .rfill{ position:absolute; top:-1px; bottom:-1px; left:0; width:0; background:rgba(255,255,255,0.22); }
+  .rrow.is-us .rfill{ background:var(--accent-soft); border-right:2px solid var(--accent); }
+  .rrow .rvals{ font-family:var(--mono); font-size:12px; color:var(--text-dim); text-align:right; }
+
+  /* MONEY LADDER (section 06 centerpiece) */
+  .ladder{ margin-top:16px; }
+  .lrow{ margin-bottom:30px; }
+  .lhead{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:10px; gap:16px; flex-wrap:wrap; }
+  .lhead .lname{ font-size:14px; color:var(--text); }
+  .lhead .lval{ font-family:var(--mono); font-size:20px; font-weight:600; color:var(--text); }
+  .ltrack{ position:relative; height:30px; background:var(--panel-2); border:1px solid var(--line); }
+  .lfill{ position:absolute; top:0; bottom:0; left:0; width:0; }
+  .lrow.piso .lfill{ background:rgba(255,255,255,0.16); }
+  .lrow.objetivo .lfill{ background:var(--accent-soft); border-right:2px solid var(--accent); }
+  .lrow.objetivo .lval{ color:var(--accent); }
+  .threshold{ position:absolute; top:-10px; bottom:-10px; width:0; border-left:2px dashed var(--negative); }
+  .threshold-label{ position:absolute; top:-30px; transform:translateX(-100%); font-family:var(--mono); font-size:10.5px; color:var(--negative); white-space:nowrap; }
+  .lcaption{ margin-top:8px; font-size:12px; color:var(--text-faint); }
+
+  /* STACKED CAPITAL BAR */
+  .stack-bar{ display:flex; height:44px; border:1px solid var(--line); margin-top:20px; }
+  .stack-seg{ display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px; color:var(--text); border-right:1px solid var(--bg); width:0; overflow:hidden; white-space:nowrap; transition:width 1s cubic-bezier(.16,.9,.28,1); }
+  .stack-seg:last-child{ border-right:none; }
+  .stack-seg.s1{ background:rgba(199,164,103,0.18); }
+  .stack-seg.s2{ background:rgba(199,164,103,0.32); }
+  .stack-seg.s3{ background:rgba(199,164,103,0.5); }
+  .stack-legend{ display:flex; gap:24px; margin-top:14px; flex-wrap:wrap; }
+  .stack-legend div{ font-size:11.5px; color:var(--text-faint); display:flex; align-items:center; gap:8px; }
+  .swatch{ width:10px; height:10px; display:inline-block; }
+
+  /* CALLOUT */
+  .callout{ border-left:2px solid var(--accent); background:var(--panel); padding:22px 26px; margin-top:28px; }
+  .callout .callout-label{ font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .callout p{ font-size:13.5px; color:var(--text-dim); }
+  .callout p b{ color:var(--text); }
+  .callout p + p{ margin-top:12px; }
+
+  /* STAGES */
+  .stages{ margin-top:8px; position:relative; }
+  .stage-line{ position:absolute; left:19px; top:14px; bottom:14px; width:2px; background:var(--line); }
+  .stage{ position:relative; padding:0 0 40px 56px; }
+  .stage:last-child{ padding-bottom:0; }
+  .stage-dot{ position:absolute; left:12px; top:2px; width:16px; height:16px; border-radius:50%; background:var(--bg); border:2px solid var(--accent); }
+  .stage-num{ font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-faint); margin-bottom:6px; }
+  .stage-title{ font-family:var(--serif); font-size:21px; }
+  .stage-price{ font-family:var(--mono); font-size:26px; font-weight:600; color:var(--accent); margin-top:8px; }
+  .stage-desc{ margin-top:10px; font-size:13.5px; color:var(--text-dim); max-width:600px; }
+
+  /* STRUCTURE DIAGRAM */
+  .structure{ margin-top:8px; display:grid; grid-template-columns:1fr auto 1fr; gap:0; align-items:center; }
+  @media (max-width:760px){ .structure{ grid-template-columns:1fr; gap:20px; } }
+  .struct-box{ border:1px solid var(--line); padding:26px; background:var(--panel); }
+  .struct-box h4{ font-family:var(--serif); font-size:18px; margin-bottom:10px; }
+  .struct-box p{ font-size:13px; color:var(--text-dim); }
+  .struct-arrow{ text-align:center; padding:0 20px; font-size:20px; color:var(--text-faint); }
+  @media (max-width:760px){ .struct-arrow{ transform:rotate(90deg); padding:4px 0; } }
+  .liquidity-list{ margin-top:30px; display:grid; grid-template-columns:repeat(2,1fr); gap:12px 32px; }
+  @media (max-width:700px){ .liquidity-list{ grid-template-columns:1fr; } }
+  .liquidity-list div{ font-size:13px; color:var(--text-dim); padding-left:16px; position:relative; }
+  .liquidity-list div::before{ content:'—'; position:absolute; left:0; color:var(--text-faint); }
+
+  /* ROLES */
+  .roles{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:760px){ .roles{ grid-template-columns:1fr; } }
+  .role{ background:var(--panel); padding:30px 26px; }
+  .role h4{ font-family:var(--serif); font-size:19px; }
+  .role p{ margin-top:12px; font-size:13px; color:var(--text-dim); }
+
+  /* CHECKLIST */
+  .checklist{ display:grid; grid-template-columns:1fr 1fr; gap:10px 32px; margin-top:8px; }
+  @media (max-width:700px){ .checklist{ grid-template-columns:1fr; } }
+  .checklist div{ font-size:13.5px; color:var(--text-dim); padding:9px 0; border-top:1px solid var(--line); display:flex; gap:10px; }
+  .checklist div::before{ content:'□'; color:var(--accent); flex-shrink:0; }
+
+  /* ACCORDION */
+  details.acc-item{ border-top:1px solid var(--line); }
+  details.acc-item:last-child{ border-bottom:1px solid var(--line); }
+  details.acc-item summary{ list-style:none; cursor:pointer; padding:20px 0; display:flex; justify-content:space-between; gap:20px; font-size:14.5px; color:var(--text); }
+  details.acc-item summary::-webkit-details-marker{ display:none; }
+  details.acc-item summary::after{ content:'+'; font-family:var(--serif); font-size:20px; color:var(--accent); flex-shrink:0; transition:transform .25s ease; }
+  details.acc-item[open] summary::after{ transform:rotate(45deg); }
+  .acc-body{ padding:0 0 22px; font-size:13.5px; color:var(--text-dim); max-width:680px; }
+
+  /* GALLERY */
+  .gallery-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:8px; }
+  @media (max-width:700px){ .gallery-grid{ grid-template-columns:1fr; } }
+  .render-slot{ position:relative; overflow:hidden; aspect-ratio:4/3; background:repeating-linear-gradient(135deg, var(--panel) 0px, var(--panel) 2px, var(--bg) 2px, var(--bg) 42px); display:flex; align-items:center; justify-content:center; text-align:center; padding:16px; }
+  .render-slot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .render-slot span{ font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; color:var(--text-faint); line-height:1.6; }
+
+  /* FOOTER */
+  footer{ padding:64px 0 80px; }
+  .footer-grid{ display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:48px; }
+  @media (max-width:800px){ .footer-grid{ grid-template-columns:1fr; gap:32px; } }
+  .footer-title{ font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:16px; }
+  footer ol{ padding-left:18px; color:var(--text-dim); font-size:12.5px; }
+  footer ol li{ margin-bottom:8px; }
+  .footer-bottom{ margin-top:56px; padding-top:28px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .footer-confidential{ font-family:var(--mono); font-size:10px; letter-spacing:.06em; color:var(--text-faint); max-width:560px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark">
+      <div class="logo-slot"><img src="assets/img/logo.svg" alt="Montangelo" onerror="this.remove(); this.parentElement.textContent='LOGO MONTANGELO';"></div>
+      <span class="nav-mark-text">Accueil by Andiani</span>
+    </div>
+    <div class="nav-links">
+      <a href="#oportunidad">01 Oportunidad</a>
+      <a href="#activo">02 El Activo</a>
+      <a href="#benchmark">03 Benchmark</a>
+      <a href="#etapas">04 Etapas</a>
+      <a href="#conviene">05 Por Qué Conviene</a>
+      <a href="#promesa">06 La Promesa</a>
+      <a href="#legal">07 Estructura</a>
+      <a href="#roles">08 Roles</a>
+      <a href="#regulacion">09 Regulación</a>
+      <a href="#porqueno">10 ¿Por Qué No?</a>
+      <a href="#validacion">11 Validación</a>
+      <a href="#deal">12 El Deal</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-media">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <img class="hero-photo" src="assets/img/hero.jpg" alt="" onerror="this.style.display='none'">
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="eyebrow">Fractional Ownership · Confidencial</div>
+    <h1 class="title">13 departamentos. <em>Un producto de inversión.</em></h1>
+    <p class="subtitle">Propuesta de estructuración para Jade Urbana: convertir el inventario de Montangelo en un vehículo fraccionado, operado a nivel hotelero, diseñado para liberar el crédito puente y vender el resto del programa con margen extra.</p>
+    <div class="meta-row">
+      <div class="meta-item"><div class="meta-label">Ubicación</div><div class="meta-value">Montes de Amé, Mérida</div></div>
+      <div class="meta-item"><div class="meta-label">Alcance del programa</div><div class="meta-value">13 unidades · 156 fracciones</div></div>
+      <div class="meta-item"><div class="meta-label">Ticket base</div><div class="meta-value">$300,000 MXN por fracción</div></div>
+      <div class="meta-item"><div class="meta-label">Estatus</div><div class="meta-value">Documento interno — no es oferta al público</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 OPORTUNIDAD -->
+<section id="oportunidad">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <div><h2 class="section-title">La oportunidad</h2><div class="section-kicker">El problema no es el precio del departamento — es el momento del inventario</div></div>
+    </div>
+    <p class="lede">Un crédito puente sigue corriendo mientras el inventario no se mueve al ritmo tradicional. La respuesta convencional es bajar precio o esperar. Proponemos cambiar la unidad de venta, no el precio del activo.</p>
+    <div class="callout">
+      <div class="callout-label">La tesis en una frase</div>
+      <p>Vender fracciones a un ritmo suficiente para que Jade Urbana libere el gravamen del crédito puente, quitarse la presión financiera de ese pasivo, y vender el resto del programa ya sin urgencia — <b>con margen extra.</b></p>
+      <p>Con un LTV típico de crédito puente de 60–70% <span style="color:var(--text-faint);">[supuesto de trabajo]</span>, una porción acotada del capital total del programa suele bastar para cubrir el saldo — no hace falta colocar las 156 fracciones para lograr el efecto de liberación.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 EL ACTIVO -->
+<section id="activo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <div><h2 class="section-title">El activo, en cifras reales</h2><div class="section-kicker">Montangelo — Montes de Amé, norte de Mérida</div></div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Superficie</div><div class="kpi-value"><span class="count-up" data-target="65" data-suffix=" m²">0</span></div><div class="kpi-note">1 hab + estudio + balcón</div></div>
+      <div class="kpi"><div class="kpi-label">Precio de lista desde</div><div class="kpi-value">$<span class="count-up" data-target="2.875" data-decimals="3" data-suffix="M">0</span></div><div class="kpi-note">Planta 1 · $44,200/m²</div></div>
+      <div class="kpi"><div class="kpi-label">Promesa del desarrollador</div><div class="kpi-value">$<span class="count-up" data-target="17" data-suffix="K">0</span></div><div class="kpi-note">MXN/mes neto por departamento</div></div>
+      <div class="kpi"><div class="kpi-label">Mantenimiento</div><div class="kpi-value">$<span class="count-up" data-target="1.5" data-decimals="1" data-suffix="K">0</span></div><div class="kpi-note">MXN/mes, precios 2026</div></div>
+      <div class="kpi"><div class="kpi-label">Departamentos totales</div><div class="kpi-value"><span class="count-up" data-target="24" data-suffix="">0</span></div><div class="kpi-note">Edificio completo, 1 sola tipología</div></div>
+      <div class="kpi"><div class="kpi-label">Unidades del programa</div><div class="kpi-value"><span class="count-up" data-target="13" data-suffix="">0</span></div><div class="kpi-note">156 fracciones totales</div></div>
+      <div class="kpi"><div class="kpi-label">Track record</div><div class="kpi-value">100%</div><div class="kpi-note">Nütuuk — vendido y ocupado</div></div>
+      <div class="kpi"><div class="kpi-label">Entrega</div><div class="kpi-value">Oct 2026</div><div class="kpi-note">Confirmar vs. dic. 2026 (fuente distinta)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 BENCHMARK -->
+<section id="benchmark">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <div><h2 class="section-title">Montangelo frente a sus competidores directos</h2><div class="section-kicker">Precio por m² — Montes de Amé y norte de Mérida</div></div>
+    </div>
+    <div class="rangechart">
+      <div class="rrow" data-val="40000"><div class="rlabel">Sky City</div><div class="rtrack"><div class="rfill fill-target"></div></div><div class="rvals">$40,000/m²</div></div>
+      <div class="rrow" data-val="40350"><div class="rlabel">Amé 34</div><div class="rtrack"><div class="rfill fill-target"></div></div><div class="rvals">$40,350/m²</div></div>
+      <div class="rrow" data-val="40730"><div class="rlabel">Cabo Norte</div><div class="rtrack"><div class="rfill fill-target"></div></div><div class="rvals">$40,730/m²</div></div>
+      <div class="rrow" data-val="42000"><div class="rlabel">San Angelo <span style="color:var(--text-faint); font-weight:400;">(techo de zona)</span></div><div class="rtrack"><div class="rfill fill-target"></div></div><div class="rvals">~$42,000/m²</div></div>
+      <div class="rrow is-us" data-val="44200"><div class="rlabel">Montangelo</div><div class="rtrack"><div class="rfill fill-target"></div></div><div class="rvals">$44,200/m²</div></div>
+      <div class="rrow" data-val="47000"><div class="rlabel">Prana</div><div class="rtrack"><div class="rfill fill-target"></div></div><div class="rvals">$47,000/m²</div></div>
+    </div>
+    <p class="table-note">Montangelo no compite por ser la opción más barata de su categoría. El propio Jade Urbana ya lo sabe: la administración de renta incluida es, según su propia página, uno de sus tres argumentos de venta. Esta propuesta <b style="color:var(--text-dim);">formaliza y profesionaliza</b> una promesa que ya hacen. El segmento $2–4 MDP donde vive Montangelo concentró el <b style="color:var(--text-dim);">66% de las ventas verticales de Mérida en 1H2025.</b></p>
+  </div>
+</section>
+
+<!-- 04 ETAPAS -->
+<section id="etapas">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <div><h2 class="section-title">La estrategia: venta de fracciones por etapas</h2><div class="section-kicker">156 fracciones totales — dimensionadas por número colocado, no por unidad</div></div>
+    </div>
+    <div class="stages">
+      <div class="stage-line"></div>
+      <div class="stage">
+        <div class="stage-dot"></div>
+        <div class="stage-num">Etapa 1 — Primeras 50 fracciones</div>
+        <div class="stage-title">Liberar el gravamen</div>
+        <div class="stage-price">$300,000 <span style="font-size:13px; color:var(--text-faint); font-weight:400;">/ fracción</span></div>
+        <p class="stage-desc">$15,000,000 MXN de capital objetivo. Precio real de venta, priorizando velocidad de colocación para avanzar la liberación del gravamen del crédito puente.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-dot"></div>
+        <div class="stage-num">Etapa 2 — Fracciones 51 a 100</div>
+        <div class="stage-title">Vender con evidencia, no con promesa</div>
+        <div class="stage-price">≈$330,000 <span style="font-size:13px; color:var(--text-faint); font-weight:400;">/ fracción (+10%)</span></div>
+        <p class="stage-desc">$16,500,000 MXN adicionales. Arranca cuando se coloquen las primeras 50 fracciones, apoyado en ocupación y cobro real de las primeras unidades del pool.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-dot"></div>
+        <div class="stage-num">Etapa 3 — Últimas 56 fracciones</div>
+        <div class="stage-title">Capturar el margen extra</div>
+        <div class="stage-price">≈$363,000 <span style="font-size:13px; color:var(--text-faint); font-weight:400;">/ fracción (+21% acum.)</span></div>
+        <p class="stage-desc">$20,328,000 MXN finales. Gravamen liberado y 6+ meses de historial operativo verificable.</p>
+      </div>
+    </div>
+    <div class="stack-bar">
+      <div class="stack-seg s1" data-w="32.05">Etapa 1 · $15.0M</div>
+      <div class="stack-seg s2" data-w="32.05">Etapa 2 · $16.5M</div>
+      <div class="stack-seg s3" data-w="35.9">Etapa 3 · $20.3M</div>
+    </div>
+    <div class="stack-legend">
+      <div><span class="swatch" style="background:rgba(199,164,103,0.5);"></span>Total: $51,828,000 MXN</div>
+      <div>vs. $46,800,000 si todo se vendiera al precio base</div>
+      <div style="color:var(--accent);">+$5,028,000 MXN por escalonar el precio</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 POR QUÉ CONVIENE -->
+<section id="conviene">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <div><h2 class="section-title">Por qué le conviene a Jade Urbana</h2></div>
+    </div>
+    <div class="checklist">
+      <div>Libera presión financiera real sobre un pasivo que sigue corriendo</div>
+      <div>El margen "cedido" en Etapa 1 se recupera en Etapas 2 y 3 — más de $5M adicionales</div>
+      <div>Formaliza una promesa que ya hacen ("administración incluida") con un mecanismo real</div>
+      <div>Nütuuk ya es la prueba de que el modelo de renta de Jade Urbana funciona</div>
+      <div>La entrega ya juega a favor del timing — sin inventario terminado esperando</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 LA PROMESA (centerpiece) -->
+<section id="promesa" style="background:var(--panel);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <div><h2 class="section-title">Igualando y superando la promesa del desarrollador</h2><div class="section-kicker">$17,000/mes neto por departamento, pulverizado a nivel fracción</div></div>
+    </div>
+    <p class="lede">Jade Urbana promete $17,000 MXN/mes de rendimiento neto por departamento. Llevado a nivel fracción, el piso a igualar o superar es <b style="color:var(--text);">$17,000 ÷ 10 = $1,700 MXN/mes — $20,400 MXN/año.</b></p>
+
+    <div class="ladder">
+      <div class="lrow piso" data-val="12950">
+        <div class="lhead"><span class="lname">Piso de referencia — renta simple, sin pool</span><span class="lval">$12,950/año · $1,079/mes</span></div>
+        <div class="ltrack"><div class="lfill fill-target"></div><div class="threshold" style="left:85%;"><span class="threshold-label">Umbral $20,400 ($1,700/mes)</span></div></div>
+      </div>
+      <div class="lrow objetivo" data-val="21308">
+        <div class="lhead"><span class="lname">Objetivo del programa — pool + operación de nivel hotelero</span><span class="lval">$21,308/año · $1,776/mes</span></div>
+        <div class="ltrack"><div class="lfill fill-target"></div></div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:44px;">
+    <table>
+      <thead><tr><th></th><th>Piso de referencia</th><th>Objetivo del programa</th></tr></thead>
+      <tbody>
+        <tr><td class="strong">Revenue bruto / fracción (anual)</td><td class="num">$17,000</td><td class="num">$26,833</td></tr>
+        <tr><td>(–) Mantenimiento prorrateado</td><td class="num">$1,500</td><td class="num">$1,500</td></tr>
+        <tr><td>(–) Operación y administración (12%)</td><td class="num">$2,040</td><td class="num">$3,220</td></tr>
+        <tr><td>(–) Reserva de capital (3%)</td><td class="num">$510</td><td class="num">$805</td></tr>
+        <tr><td class="strong">Neto / fracción (anual)</td><td class="num strong">$12,950</td><td class="num strong" style="color:var(--accent);">$21,308</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">Cómo se llega ahí</div>
+      <p>El objetivo del programa supera el piso de $1,700/mes anclado en comparables reales del mismo submercado — unidades operando entre $222,000 y $322,000 MXN anuales, top-cuartil, sin depender de amenidades excepcionales. Se llega operando producto, experiencia, distribución, revenue management, demanda y servicios adicionales juntos — no subiendo la tarifa por noche.</p>
+      <p><b>Y esto es solo la renta.</b> La fracción también participa de la plusvalía del submercado — el norte de Mérida es históricamente la zona de mayor apreciación de la ciudad. Ese upside de capital se suma al rendimiento de renta, no lo sustituye.</p>
+    </div>
+    <p class="table-note">[Objetivo respaldado por comparables reales — no garantizado. Fee de operación y reserva son puntos de partida de trabajo, a validar contra el costo real del operador que se designe.]</p>
+  </div>
+</section>
+
+<!-- 07 ESTRUCTURA -->
+<section id="legal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <div><h2 class="section-title">Estructura legal</h2><div class="section-kicker">Fideicomiso + sociedad operadora — no copropiedad directa</div></div>
+    </div>
+    <p class="lede">El Código Civil Federal (Cap. VI, De la Copropiedad) impone riesgos concretos: derecho del tanto (8 días de preferencia, art. 940), división judicial forzosa a solicitud de un solo copropietario (art. 939), embargo de una parte alícuota que afecta a los demás, y unanimidad para actos de dominio. Se descarta por evidencia legal, no solo por criterio.</p>
+    <div class="structure">
+      <div class="struct-box"><h4>Fideicomiso</h4><p>Titular de las 13 unidades. Protege el activo de cualquier pasivo generado por la operación.</p></div>
+      <div class="struct-arrow">→</div>
+      <div class="struct-box"><h4>Sociedad operadora</h4><p>A definir por Jade Urbana. Presta administración y revenue management bajo contrato de management fee, sin ser dueña del activo.</p></div>
+    </div>
+    <p class="table-note" style="margin-top:36px;">Mecanismo de liquidez propuesto — el punto más débil de cualquier fraccional en México si se deja sin resolver:</p>
+    <div class="liquidity-list">
+      <div>Valuación independiente anual del portafolio</div>
+      <div>Mercado interno de participaciones entre fraccionistas</div>
+      <div>Derecho de venta conjunta si se vende una unidad completa</div>
+      <div>Fondo de recompra opcional del propio fideicomiso</div>
+    </div>
+    <p class="table-note">[Requiere validación legal y fiscal antes de comprometerse por escrito.]</p>
+  </div>
+</section>
+
+<!-- 08 ROLES -->
+<section id="roles">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <div><h2 class="section-title">Roles e incentivos</h2></div>
+    </div>
+    <div class="roles">
+      <div class="role"><h4>Jade Urbana</h4><p>Aporta las 13 unidades al fideicomiso. Gana por liberación del gravamen, margen extra en Etapas 2–3, y un canal adicional de absorción.</p></div>
+      <div class="role"><h4>Operador <span style="color:var(--text-faint); font-weight:400; font-size:13px;">(a definir)</span></h4><p>Opera el pool vía sociedad operadora. Fee base (3–5% de revenue bruto) + performance (10–15% del NOI sobre hurdle).</p></div>
+      <div class="role"><h4>Inversionistas</h4><p>Titulares económicos vía fideicomiso. Distribución de flujo atribuido a su unidad, derecho de uso, apreciación del submercado.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 REGULACIÓN -->
+<section id="regulacion">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">09</span>
+      <div><h2 class="section-title">Riesgo regulatorio</h2><div class="section-kicker">Renta de corta estancia en Mérida — "Mérida Ordenada", desde enero de 2026</div></div>
+    </div>
+    <p class="lede">Estatus actual: invitación voluntaria, no obligatoria — aunque el sector turístico formal (CETUR) ya solicita registro obligatorio equiparable al de hoteles. El fideicomiso debe mantener licencias vigentes desde el arranque del pool.</p>
+    <div class="checklist">
+      <div>Predial al día</div>
+      <div>Licencia de uso de suelo</div>
+      <div>Actualización catastral</div>
+      <div>Licencia de funcionamiento (renovación trienal)</div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 POR QUÉ NO -->
+<section id="porqueno" style="background:var(--panel);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">10</span>
+      <div><h2 class="section-title">¿Por qué NO hacer esto?</h2></div>
+    </div>
+    <div>
+      <details class="acc-item"><summary>$300,000 es más alto que lo que sale la unidad más barata (Planta 1)</summary><div class="acc-body">El ticket plano absorbe la variabilidad entre plantas — simplicidad comercial a cambio de una prima relativa en pisos bajos.</div></details>
+      <details class="acc-item"><summary>El pool obligatorio le quita flexibilidad al propietario</summary><div class="acc-body">Cierto, y debe decirse antes de la venta — es el costo de la economía de escala que sostiene el objetivo de la Sección 06.</div></details>
+      <details class="acc-item"><summary>No hay mercado secundario para salir</summary><div class="acc-body">Se propone un mecanismo concreto (Sección 07), pendiente de validación legal.</div></details>
+      <details class="acc-item"><summary>La zona tiene mucha competencia directa</summary><div class="acc-body">Cierto — por eso el diferenciador no puede ser precio por m², tiene que ser la operación.</div></details>
+      <details class="acc-item"><summary>No sabemos el monto exacto que libera el gravamen</summary><div class="acc-body">No es necesario para avanzar con el diseño — lo calcula Jade Urbana con su propio LTV.</div></details>
+      <details class="acc-item"><summary>¿Y si el operador no alcanza el objetivo de la Sección 06?</summary><div class="acc-body">Es un objetivo respaldado por comparables reales, no una garantía — se comunica así desde el inicio.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- 11 VALIDACIÓN -->
+<section id="validacion">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">11</span>
+      <div><h2 class="section-title">Validación antes de lanzar</h2></div>
+    </div>
+    <div class="checklist">
+      <div>20 entrevistas a inversionistas potenciales — disposición real a pagar, no interés hipotético</div>
+      <div>5 entrevistas a operadores de renta en la zona — validar costos reales de la Sección 06</div>
+      <div>2–3 pruebas de precio antes de comprometer las 50 fracciones de Etapa 1</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 EL DEAL / GALERÍA -->
+<section id="deal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">12</span>
+      <div><h2 class="section-title">El deal — resumen</h2></div>
+    </div>
+    <p class="lede" style="margin-bottom:56px;">Jade Urbana aporta 13 unidades a un fideicomiso. Se colocan las primeras 50 fracciones a $300,000 para avanzar la liberación del gravamen. Toda unidad vendida entra automáticamente al pool bajo un estándar de servicio de nivel hotelero, apuntando a igualar y superar los $1,700/mes por fracción que implica la promesa del desarrollador — con la plusvalía del submercado como upside adicional. Etapas 2 y 3 capturan más de $5M de margen adicional para Jade Urbana.</p>
+
+    <div class="section-head"><span class="section-num">·</span><div><h2 class="section-title" style="font-size:20px;">Material visual — espacio reservado</h2></div></div>
+    <div class="gallery-grid">
+      <div class="render-slot"><img src="assets/img/render-1.jpg" alt="Render de fachada / vista aérea" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span style="display:none;">Render de fachada / vista aérea<br><span style="opacity:.6;">assets/img/render-1.jpg</span></span></div>
+      <div class="render-slot"><img src="assets/img/render-2.jpg" alt="Interior — sala / cocina" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span style="display:none;">Interior — sala / cocina<br><span style="opacity:.6;">assets/img/render-2.jpg</span></span></div>
+      <div class="render-slot"><img src="assets/img/render-3.jpg" alt="Zona — Montes de Amé" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"><span style="display:none;">Zona — Montes de Amé<br><span style="opacity:.6;">assets/img/render-3.jpg</span></span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">Próximos pasos</div>
+        <ol>
+          <li>Confirmar unidades específicas del programa y fecha de entrega vigente.</li>
+          <li>Ejecutar la validación de mercado antes de comprometer Etapa 1.</li>
+          <li>Validar legal y fiscalmente la estructura y el mecanismo de liquidez.</li>
+          <li>Definir el operador del pool.</li>
+          <li>Integrar el documento de propuesta de valor de property management, pendiente de envío.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="footer-title">Fuentes</div>
+        <p style="font-size:12.5px; color:var(--text-dim); line-height:1.8;">Sitio oficial de Montangelo (jadeurbana.com). Benchmark competitivo de mercado, Montes de Amé. Estudio de mercado STR Montes de Amé (Beyond Pricing + AirDNA, conciliado). Código Civil Federal.</p>
+      </div>
+      <div>
+        <div class="footer-title">Confidencialidad</div>
+        <p style="font-size:12.5px; color:var(--text-dim); line-height:1.8;">Documento de trabajo interno, para uso exclusivo en la conversación con Jade Urbana. No constituye oferta de inversión, asesoría legal, fiscal o financiera.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="logo-slot"><img src="assets/img/logo.svg" alt="Montangelo" onerror="this.remove(); this.parentElement.textContent='LOGO MONTANGELO';"></div>
+      <div class="footer-confidential">MONTANGELO × ACCUEIL BY ANDIANI — PROPUESTA INTERNA</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function animateCount(el){
+    var target = parseFloat(el.dataset.target);
+    var decimals = parseInt(el.dataset.decimals || '0', 10);
+    var suffix = el.dataset.suffix || '';
+    if(reduce){ el.textContent = target.toFixed(decimals) + suffix; return; }
+    var start = null, dur = 1100;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts-start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      el.textContent = (target*eased).toFixed(decimals) + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var COMP_MAX = 50000;
+  var LADDER_MAX = 24000;
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el = entry.target;
+      el.classList.add('in');
+
+      if(el.classList.contains('count-up')) animateCount(el);
+
+      if(el.classList.contains('rrow')){
+        var f = el.querySelector('.rfill');
+        var pct = (parseFloat(el.dataset.val)/COMP_MAX)*100;
+        f.style.width = reduce ? pct+'%' : '0%';
+        if(!reduce) setTimeout(function(){ f.style.width = pct+'%'; }, 50);
+      }
+
+      if(el.classList.contains('lrow')){
+        var lf = el.querySelector('.lfill');
+        var lpct = (parseFloat(el.dataset.val)/LADDER_MAX)*100;
+        lf.style.width = reduce ? lpct+'%' : '0%';
+        if(!reduce) setTimeout(function(){ lf.style.width = lpct+'%'; }, 50);
+      }
+
+      if(el.classList.contains('stack-bar')){
+        el.querySelectorAll('.stack-seg').forEach(function(seg, i){
+          var w = seg.dataset.w;
+          seg.style.width = reduce ? w+'%' : '0%';
+          if(!reduce) setTimeout(function(){ seg.style.width = w+'%'; }, 80 + i*180);
+        });
+      }
+
+      io.unobserve(el);
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.count-up, .rrow, .lrow, .stack-bar, section, .kpi, .callout').forEach(function(el){
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+})();
+</script>
+
+</body>
+</html>
